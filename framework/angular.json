@@ -1,5 +1,5 @@
 {
-	"$schema": "/home/centos/efs/version-repo/node_modules/@angular/cli/lib/config/schema.json",
+	"$schema": "node_modules/@angular/cli/lib/config/schema.json",
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
@@ -23,20 +23,20 @@
 							"src/assets"
 						],
 						"styles": [
-							"/home/centos/efs/version-repo/node_modules/font-awesome/css/font-awesome.css",
-							"/home/centos/efs/version-repo/node_modules/font-awesome-animation/dist/font-awesome-animation.min.css",
-							"/home/centos/efs/version-repo/node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"/home/centos/efs/version-repo/node_modules/ngx-toastr/toastr.css",
+							"node_modules/font-awesome/css/font-awesome.css",
+							"node_modules/font-awesome-animation/dist/font-awesome-animation.min.css",
+							"node_modules/bootstrap/dist/css/bootstrap.min.css",
+							"node_modules/ngx-toastr/toastr.css",
 							"src/styles.css",
 							"src/ui-studio.css",
-							"/home/centos/efs/version-repo/node_modules/angular-calendar/css/angular-calendar.css"
+							"node_modules/angular-calendar/css/angular-calendar.css"
 							
 						],
 						"scripts": [
-							"/home/centos/efs/version-repo/node_modules/jquery/dist/jquery.min.js",
-							"/home/centos/efs/version-repo/node_modules/popper.js/dist/umd/popper.js",
-							"/home/centos/efs/version-repo/node_modules/bootstrap/dist/js/bootstrap.min.js",
-							"/home/centos/efs/version-repo/node_modules/gasparesganga-jquery-loading-overlay/dist/loadingoverlay.min.js"
+							"node_modules/jquery/dist/jquery.min.js",
+							"node_modules/popper.js/dist/umd/popper.js",
+							"node_modules/bootstrap/dist/js/bootstrap.min.js",
+							"node_modules/gasparesganga-jquery-loading-overlay/dist/loadingoverlay.min.js"
 						],
 						"es5BrowserSupport": true
 					},
