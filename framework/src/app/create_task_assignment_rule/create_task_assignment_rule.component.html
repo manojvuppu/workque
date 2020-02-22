@@ -1,0 +1,100 @@
+<h1 mat-dialog-title *ngIf="!data.id">Create Assignment Rule</h1>
+<h1 mat-dialog-title *ngIf="data.id">Edit Assignment Rule</h1>
+
+<div mat-dialog-content>
+	<form role="form" name="form" #f="ngForm">
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label required">Rule Name</label>
+					<input type="text" id="name" #rp="ngModel" name="name" required class="form-control"
+						[(ngModel)]="data.name" placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label required">Version</label>
+					<input type="number" id="version" #v="ngModel" name="version" required class="form-control"
+						[(ngModel)]="data.version" placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!v.valid && v.touched"> Please Enter value</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label required">Queue Name</label>
+					<select id="queueMPId" name="queueMPId" #ca="ngModel" [(ngModel)]="data.queueMPId" required
+                            class="form-control" value="{{data.queueMPId}}">
+                            <option *ngFor="let item of queue; let i = index" value="{{item.id}}"> {{item.queueName}}
+                            </option>
+
+                        </select>
+                        <!-- <input  type="text" id="AddonName" #i="ngModel" disabled name="id" required class="form-control" [(ngModel)]="data.id"
+											placeholder="Enter Value" /> -->
+                        <span class="help-block" *ngIf="!ca.valid && ca.touched"> Please Enter value</span>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<p>Select Assignment Type</p>
+					<mat-radio-group aria-label="Select an option" name="show" required [(ngModel)]="show">
+						<mat-radio-button [checked]='true' value="true">Auto</mat-radio-button>
+						<mat-radio-button value="false">Manual</mat-radio-button>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<p *ngIf="show">Select Assignment Value</p>
+					<mat-radio-group aria-label="Select an option" name="autoAssign" required
+						[(ngModel)]="data.autoAssign">
+						<mat-radio-button *ngIf="show == 'true'" value="LeastBulkLoad">Least Bulk Load
+						</mat-radio-button>
+						<mat-radio-button *ngIf="show == 'true'" value="Alphabetical">Alphabetical</mat-radio-button>
+						<mat-radio-button *ngIf="show == 'false'" value="SelfAssign">Self Assign</mat-radio-button>
+						<mat-radio-button *ngIf="show == 'false'" value="SupervisorAssign">Supervisor Assign
+						</mat-radio-button>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- <nav>
+			<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+				<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+					aria-controls="nav-home" aria-selected="true">Auto</a>
+				<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+					aria-controls="nav-profile" aria-selected="false">Manual</a>
+
+			</div>
+		</nav> -->
+		<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+			</div>
+			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+
+			</div>
+
+		</div>
+
+	</form>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Cancel</button>
+	<button mat-button (click)="save()" [mat-dialog-close]="data" cdkFocusInitial style=" background: black; color: #fff; ">Save</button>
+</div>

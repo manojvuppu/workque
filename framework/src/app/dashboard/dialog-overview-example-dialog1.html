@@ -1,0 +1,131 @@
+<h1 mat-dialog-title>Dashboard Widgets</h1>
+<div mat-dialog-content>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+                <mat-card class="example-card" style=" height: 24em; " >
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>Tasks by Status</mat-card-title>
+                          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                        </mat-card-header>
+                        <img mat-card-image src="assets/images/widget1.png" alt="Task By Status">
+                        <mat-card-content>
+                                <p>Chart view of tasks by status, filtered by individual</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                                <!-- <div>
+                                        <input type="checkbox" [(checked)]="data.displayCompletedTasks" (change)="data.displayCompletedTasks = !data.displayCompletedTasks" /> Add to Dashboard
+                                      </div> -->
+                        </mat-card-actions>
+                      </mat-card>
+        </div>
+
+        <div class="col-md-4">
+                <mat-card class="example-card" style=" height: 24em; ">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>Tasks by Due Date</mat-card-title>
+                          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                        </mat-card-header>
+                        <img mat-card-image src="assets/images/duedate.png" alt="Task By Status">
+                        <mat-card-content>
+                                <p>Chart view of percentage of tasks due at acertain time.</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <div>
+                                <input type="checkbox" [(checked)]="data.displayTasksByDueDate" (change)="data.displayTasksByDueDate = !data.displayTasksByDueDate" /> Add to Dashboard
+                              </div>
+                        </mat-card-actions>
+                      </mat-card>
+        </div>
+
+        <div class="col-md-4">
+                <mat-card class="example-card" style=" height: 24em; ">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>My Tasks Today</mat-card-title>
+                          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                        </mat-card-header>
+                        <img mat-card-image src="assets/images/table.png" alt="Task By Status">
+                        <mat-card-content>
+                                <p>View a list of your tasks due today</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <div>
+                                <input type="checkbox" [(checked)]="data.displayMyTasksToday" (change)="data.displayMyTasksToday = !data.displayMyTasksToday" /> Add to Dashboard
+                              </div>
+                        </mat-card-actions>
+                      </mat-card>
+        </div>
+
+        <div class="row mt-3">
+
+        <div class="col-md-4">
+                <mat-card class="example-card" style="height: 26em;">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>Tasks By User</mat-card-title>
+                          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                        </mat-card-header>
+                        <img mat-card-image src="assets/images/tasksByUser.png" alt="Task By Status">
+                        <mat-card-content>
+                                <p>Chart view of tasks completed within a certain amount of time.</p>
+                        </mat-card-content>
+                        <div>
+                            <input type="checkbox" [(checked)]="data.displayNumberOfTasksByUser" (change)="data.displayNumberOfTasksByUser = !data.displayNumberOfTasksByUser" /> Add to Dashboard
+                          </div>
+                      </mat-card>
+        </div>
+
+       
+
+        <div class="col-md-4">
+                <mat-card class="example-card" style="height: 26em;">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>Completed Tasks</mat-card-title>
+                          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                        </mat-card-header>
+                        <img mat-card-image src="assets/images/widget2.png" alt="Task By Status">
+                        <mat-card-content>
+                                <p>Chart view of tasks by status, filtered by individual</p>
+                        </mat-card-content>
+                        
+
+                          <div>
+                              <input type="checkbox" [(checked)]="data.displayCompletedTasks" (change)="data.displayCompletedTasks = !data.displayCompletedTasks" /> Add to Dashboard
+                            </div>
+                      </mat-card>
+        </div>
+
+        <div class="col-md-4">
+                <mat-card class="example-card" style="height: 26em;">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>Created vs. Resolved</mat-card-title>
+                          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                        </mat-card-header>
+                        <img mat-card-image src="assets/images/queue.png" alt="Task By Status">
+                        <mat-card-content>
+                                <p>Compare numnber of tasks created vs. resolved over there</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <div>
+                                <input type="checkbox" [(checked)]="data.displayCreatedVsResolved" (change)="data.displayCreatedVsResolved = !data.displayCreatedVsResolved" /> Add to Dashboard
+                              </div>
+                        </mat-card-actions>
+                      </mat-card>
+        </div>
+        <!-- </div> -->
+</div>
+
+   
+    </div>
+</div>
+ 
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial style=" background: black; color: #fff; ">Ok</button>
+</div>

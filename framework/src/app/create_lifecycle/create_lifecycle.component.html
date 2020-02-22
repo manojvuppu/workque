@@ -1,0 +1,196 @@
+<h1 mat-dialog-title *ngIf="!data.id"> Create lifecycle</h1>
+<h1 mat-dialog-title *ngIf="data.id"> Edit lifecycle</h1>
+
+<hr>
+<div mat-dialog-content>
+	<mat-horizontal-stepper labelPosition="bottom" #stepper>
+		<mat-step [stepControl]="firstFormGroup">
+
+			<ng-template matStepLabel>Life Cycle Name</ng-template>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label required">Life CycleName</label>
+						<input type="text" id="AddonName" #rp="ngModel" name="name" required class="form-control"
+							[(ngModel)]="data.name" placeholder="Enter Value" />
+						<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<p>Select Life cycle status</p>
+						<mat-radio-group aria-label="Select an option" name="active" required [(ngModel)]="active">
+							<mat-radio-button [checked]='true' value="true">Active</mat-radio-button>
+							<mat-radio-button value="false">In Active</mat-radio-button>
+						</mat-radio-group>
+						<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label class="control-label required">Description</label>
+						<textarea rows="5" type="text" id="AddonName" #rp="ngModel" name="description" required
+							class="form-control" [(ngModel)]="data.description" placeholder="Enter Value"></textarea>
+						<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<button class="btn btn-info float-right" mat-button matStepperNext>Next</button>
+			</div>
+
+		</mat-step>
+		<mat-step [stepControl]="secondFormGroup">
+
+			<ng-template matStepLabel>Add Status</ng-template>
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<div class="row">
+							<div class="col-md-10">
+								<div class="form-group">
+									<!-- <label class="control-label required">Life CycleName</label> -->
+									<input type="text" id="AddonName"  #rp="ngModel" name="ratePlan" required
+										class="form-control" [(ngModel)]="ratePlan" placeholder="Enter Value" />
+									<!-- <span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span> -->
+								</div>
+							</div>
+							<div class="col-md-1">
+								<!-- <button class="btn btn-default  btn-sm" (click)='add()'>
+									<span class="fa fa-plus"></span>
+								</button> -->
+								<button class="btn add btn-circle btn-circle-sm m-1"  (click)='add(rp.value)'><i
+										class="fa fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</tr>
+					<tr *ngFor="let item of data.status; let i = index">
+						<td>
+							{{item.name}}
+						</td>
+						<td>
+							<!-- <button class="btn btn-default  btn-sm" (click)='delete(i)'>
+								<span class="fa fa-edit"></span>
+							</button> -->
+							<button class="btn btn-default  btn-sm" (click)='deletestatus(i)'>
+								<span class="fa fa-trash"></span>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<button mat-button matStepperPrevious>Back</button>
+				<button class="btn btn-info float-right" mat-button matStepperNext>Next</button>
+			</div>
+
+		</mat-step>
+		<mat-step>
+			<ng-template matStepLabel>Add Action</ng-template>
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Step Id</th>
+						<th>From State</th>
+						<th>To State</th>
+						<th>Transition</th>
+						<th>Function</th>
+						<th>Action</th>
+						<!-- <th>Value 2</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<input type="text" id="stepid" #step="ngModel" name="stepId" required
+								class="form-control" [(ngModel)]="stepId" placeholder="Enter Value" />
+						</td>
+						<td>
+							<input type="text" id="Attribute" #current="ngModel" name="currentState" required
+								class="form-control" [(ngModel)]="currentState" placeholder="Enter Value" />
+						</td>
+
+						<td>
+							<input type="text" id="newState" #new1="ngModel" name="newState" required class="form-control"
+								[(ngModel)]="newState" placeholder="Enter Value" />
+						</td>
+
+						<td>
+							<input type="text" id="action" #acti="ngModel" name="action" required class="form-control"
+								[(ngModel)]="action" placeholder="Enter Value" />
+						</td>
+
+						<td>
+							<input type="text" id="function" #func="ngModel" name="functionalMapping" required
+								class="form-control" [(ngModel)]="functionalMapping" placeholder="Enter Value" />
+						</td>
+
+						<td>
+
+							<button class="btn add btn-circle btn-circle-sm m-1" (click)='addtab(step.value,current.value,new1.value,acti.value,func.value)'><i
+									class="fa fa-plus"></i></button>
+
+						</td>
+					</tr>
+
+					<tr *ngFor="let item of data.stateTransition; let i = index">
+						<td>
+							{{item.stepId}}
+						</td>
+						<td>
+							{{item.currentState}}
+						</td>
+
+						<td>
+							{{item.newState}}
+						</td>
+						<td>
+							{{item.action}}
+						</td>
+
+						<td>
+							{{item.functionalMapping}}
+						</td>
+
+						<td>
+							<!-- <button class="btn btn-default  btn-sm" (click)='edit(item.stepId,item.currentState,item.newState,item.action,item.functionalMapping)'>
+								<span class="fa fa-edit"></span>
+							</button> -->
+							<button class="btn btn-default  btn-sm" (click)='deleteaction(i)'>
+								<span class="fa fa-trash"></span>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+			<div>
+				<button mat-button matStepperPrevious>Back</button>
+				<!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+
+				<!-- <button mat-button (click)="onNoClick()">Cancel</button> -->
+			<button mat-button (click)="save()" class="btn btn-info float-right" [mat-dialog-close]="data.animal" cdkFocusInitial style=" background: black; color: #fff; ">Save</button>
+			</div>
+
+
+
+		</mat-step>
+	</mat-horizontal-stepper>
+
+</div>
+<div mat-dialog-actions>
+
+</div>

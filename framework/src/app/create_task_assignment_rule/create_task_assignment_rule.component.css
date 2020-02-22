@@ -1,0 +1,10 @@
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+::ng-deep .mat-dialog-title {
+  text-align: center;
+  color: #174A84;
+  
+}
+

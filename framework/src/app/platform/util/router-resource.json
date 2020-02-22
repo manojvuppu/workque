@@ -1,0 +1,67 @@
+[
+	{
+		"path": "/adminassignmentrule",
+		"isManualRouterPermission": false,
+		"name": "Adminassignmentrule"
+	},
+	{
+		"path": "/admincustomize",
+		"isManualRouterPermission": false,
+		"name": "Admincustomize"
+	},
+	{
+		"path": "/adminlifecycle",
+		"isManualRouterPermission": false,
+		"name": "Adminlifecycle"
+	},
+	{
+		"path": "/adminnotification",
+		"isManualRouterPermission": false,
+		"name": "Adminnotification"
+	},
+	{
+		"path": "/adminqueues",
+		"isManualRouterPermission": false,
+		"name": "Adminqueues"
+	},
+	{
+		"path": "/admintasttype",
+		"isManualRouterPermission": false,
+		"name": "Admintasttype"
+	},
+	{
+		"path": "/dashboard",
+		"isManualRouterPermission": false,
+		"name": "Dashboard"
+	},
+	{
+		"path": "/eventLogs",
+		"isManualRouterPermission": false,
+		"name": "EventLogs"
+	},
+	{
+		"path": "/mytask",
+		"isManualRouterPermission": false,
+		"name": "Mytask"
+	},
+	{
+		"path": "/transactionLog",
+		"isManualRouterPermission": false,
+		"name": "TransactionLog"
+	},
+	{
+		"path": "/usergroup",
+		"isManualRouterPermission": false,
+		"name": "Usergroup"
+	},
+	{
+		"path": "/userprofile",
+		"isManualRouterPermission": false,
+		"name": "Userprofile"
+	},
+	{
+		"path": "/work-queue",
+		"isManualRouterPermission": false,
+		"name": "Work-queue"
+	}
+]

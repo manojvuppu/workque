@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Delete Data</h1>
+<hr>
+<div mat-dialog-content>
+Do you want to delete?
+<br>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">No</button>
+	<button mat-button (click)="save()" [mat-dialog-close]="data" cdkFocusInitial>Yes</button>
+</div>

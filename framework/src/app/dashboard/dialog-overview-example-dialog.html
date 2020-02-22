@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Layout Options</h1>
+<div mat-dialog-content>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="data.layout" #radioGroup="matRadioGroup" >
+                        <mat-radio-button value="12" >
+                               
+                                <svg xmlns="http://www.w3.org/2000/svg" width="201" height="179" viewBox="0 0 201 179"><defs><style>.a{fill:#d3d2d2;}</style></defs><rect class="a" width="201" height="179"/></svg>
+                                <span class="d-block" style="margin-left: 4em; padding-top: 1em;"> 1 Column</span>
+                        </mat-radio-button>
+
+                        <mat-radio-button value="6" style="margin-left: 4em;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="201" height="179" viewBox="0 0 201 179"><defs><style>.a{fill:#d3d2d2;}</style></defs><g transform="translate(-41.515)"><rect class="a" width="91" height="179" transform="translate(41.515)"/><rect class="a" width="90" height="179" transform="translate(152.515)"/></g></svg>
+                                <span class="d-block" style="margin-left: 4em; padding-top: 1em;"> 2 Column</span>
+                        </mat-radio-button>
+
+                        <mat-radio-button value="4" style="margin-left: 4em;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="201" height="179" viewBox="0 0 201 179"><defs><style>.a{fill:#d3d2d2;}</style></defs><g transform="translate(-48.845)"><rect class="a" width="54" height="179" transform="translate(48.845)"/><rect class="a" width="54" height="179" transform="translate(122.845)"/><rect class="a" width="54" height="179" transform="translate(195.845)"/></g></svg>
+                                <span class="d-block" style="margin-left: 4em; padding-top: 1em;"> 3 Column</span>
+                        </mat-radio-button>
+                </mat-radio-group>
+
+          </div>
+          <div>radio group ngModel: {{ data.layout }}</div>
+
+          
+          
+      </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial style=" background: black; color: #fff; ">Ok</button>
+</div>

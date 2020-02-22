@@ -1,0 +1,14 @@
+{
+	"app-root": "app.component.html",
+	"app-header": "header/header.component.html",
+	"app-custom-router-handler": "platform/custom-router-handler/custom-router-handler.component.html",
+	"child-cell": "platform/logs/actions/event-log-actions.component.html",
+	"app-data-grid": "platform/logs/data-grid/data-grid.component.html",
+	"app-event-log-details": "platform/logs/event-log-details/event-log-details.component.html",
+	"app-event-log-report": "platform/logs/event-log-report/event-log-report.component.html",
+	"app-event-log-table": "platform/logs/event-log-table/event-log-table.component.html",
+	"app-transaction-log-details": "platform/logs/transaction-log-details/transaction-log-details.component.html",
+	"app-transaction-log-report": "platform/logs/transaction-log-report/transaction-log-report.component.html",
+	"app-transaction-log-table": "platform/logs/transaction-log-table/transaction-log-table.component.html",
+	"app-page-not-found": "platform/page-not-found/page-not-found.component.html"
+}

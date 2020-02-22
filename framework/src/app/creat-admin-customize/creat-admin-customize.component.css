@@ -1,0 +1,184 @@
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  button.mr-8.mat-raised-button.mat-button-base.mat-accent {
+    margin-right: 8px;
+}
+  button.mat-raised-button.mat-button-base.mat-accent {
+    background: #000;
+    border-radius: 0;
+    color: #fff;
+}
+.mat-step-icon-state-number.mat-step-icon.mat-step-icon-selected {
+    background: #fff !important;
+    color: #000;
+    box-shadow: 1px -1px 7px 0px #ccc;
+}
+.mat-step-icon {
+    background: black !important;
+    height: 50px !Important;
+    width: 50px !Important;
+}
+.successmsg{
+    color: green;
+}
+.width50{
+    display: inline-block;
+    width: auto;
+}
+.successmsg span{
+    display: inline-block;
+    position: relative;
+    top: -8px;
+}
+.chiller_cb .width50 input.form-control {
+    display: block !important;
+    margin: 10px 20px 10px 20px;
+}
+.fullwidth{
+    display: block;
+}
+label.title.ng-star-inserted {
+    font-weight: 500;
+    font-size: 16px;
+}
+.mat-step-icon-state-edit.mat-step-icon {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: 0px 1px 2px 1px #ccc;
+}
+mat-icon.active-icon.green-600.s-16.mat-icon.notranslate.material-icons.mat-icon-no-color {
+    color: green;
+    border-radius: 16px;
+    border: 1px solid green;
+    /* width: 10px; */
+    /* height: 10px; */
+    /* vertical-align: super; */
+    margin-right: 10px;
+}
+  .btn-circle {
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      text-align: center;
+      padding: 0;
+      border-radius: 50%;
+    }
+    
+    .btn-circle i {
+      position: relative;
+      top: -1px;
+    }
+    
+    .btn-circle-sm {
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      font-size: 0.7rem;
+      margin-top: -20px;
+      
+    }
+    
+    .btn-circle-lg {
+      width: 55px;
+      height: 55px;
+      line-height: 55px;
+      font-size: 1.1rem;
+    }
+    
+    .add{
+      background-color: black;
+    }
+    
+    button .fa-plus{
+      color: white;
+      font-size: 15px;
+    }
+    
+.bg {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .span_pseudo, .chiller_cb span:before, .chiller_cb span:after {
+    content: "";
+    display: inline-block;
+    background: #fff;
+    width: 0;
+    height: 0.2rem;
+    position: absolute;
+    transform-origin: 0% 0%;
+  }
+    .chiller_cb {
+        position: relative;
+        height: 2rautoem;
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+      }
+      .chiller_cb input {
+        display: none;
+      }
+      .chiller_cb input:checked ~ span {
+        background: #fd2727;
+        border-color: #fd2727;
+      }
+      .chiller_cb input:checked ~ span:before {
+        width: 1rem;
+        height: 0.15rem;
+        transition: width 0.1s;
+        transition-delay: 0.3s;
+      }
+      .chiller_cb input:checked ~ span:after {
+        width: 0.4rem;
+        height: 0.15rem;
+        transition: width 0.1s;
+        transition-delay: 0.2s;
+      }
+      .chiller_cb input:disabled ~ span {
+        background: #ececec;
+        border-color: #dcdcdc;
+      }
+      .chiller_cb input:disabled ~ label {
+        color: #dcdcdc;
+      }
+      .chiller_cb input:disabled ~ label:hover {
+        cursor: default;
+      }
+      .chiller_cb label {
+        padding-left: 2rem;
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+        margin-bottom:0;
+      }
+      .chiller_cb span {
+        display: inline-block;
+        width: 1.2rem;
+        height: 1.2rem;
+        border: 2px solid #ccc;
+        position: absolute;
+        left: 0;
+        transition: all 0.2s;
+        z-index: 1;
+        box-sizing: content-box;
+      }
+      .chiller_cb span:before {
+        transform: rotate(-55deg);
+        top: 1rem;
+        left: 0.37rem;
+      }
+      .chiller_cb span:after {
+        transform: rotate(35deg);
+        bottom: 0.35rem;
+        left: 0.2rem;
+      }
+
+      ::ng-deep .mat-dialog-title {
+        text-align: center;
+        color: #174A84;
+        
+      }
+      

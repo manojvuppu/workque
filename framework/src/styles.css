@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~flatpickr/dist/flatpickr.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import "~ngx-toastr/toastr";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.css';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+@import '~ngx-toastr/toastr';
+/* Add application styles & imports to this file! */
+
+
+html {
+  /* overflow: hidden; */
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0px;
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  min-height: 100%;
+  /* background: #303030; */
+}
+
+* {
+  -webkit-font-smoothing: antialased;
+  -moz-osx-font-smoothing: antialased;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* SPACER */
+.spacer {
+  flex: 1 1 auto;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  outline: none !important;
+  cursor: pointer;
+}
+.datatable-body-cell-label{
+  color: #174A84;
+}
+
+.ngx-datatable.material .datatable-header .datatable-header-cell{
+  color: #174A84;
+
+}
+.hash{
+  color: #8D8D8D!important;
+}
+
+.tabsBottom{
+  color: #FF0000;
+}
+
+::ng-deep .mat-drawer-container {
+  background-color: #fff !important;
+  /* color: rgba(0,0,0,.87); */
+}
+
+.chip{
+  box-shadow: 0px 3px 6px #00000029 !Important;
+border: 1px solid #E8E8E8 !Important;
+border-radius: 6px !Important;
+opacity: 1 !Important;
+}
+.black{
+  color:#000000;
+}
+
+::ng-deep .mat-dialog-title {
+  text-align: center;
+  color: #174A84;
+  
+}
+

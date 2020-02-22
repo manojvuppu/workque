@@ -1,0 +1,98 @@
+<h1 mat-dialog-title>Create Notification Template</h1>
+<hr>
+<div mat-dialog-content>
+	<form role="form" name="form" #f="ngForm">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label required">Event</label>
+					<select id="eventId" name="eventId" #ev="ngModel"
+						[(ngModel)]="data.bodyFile" required class="form-control">
+						<option value="{{item.id}}" *ngFor="let item of events; let i = index"> {{item.bodyFile}}
+						</option>
+					</select>
+					<span class="help-block" *ngIf="!ev.valid && ev.touched"> Please select value</span>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label class="control-label required">Language</label>
+					<select id="lang" name="lang"  #ln="ngModel"
+						[(ngModel)]="data.lang" required class="form-control">
+						<option value="english" > English
+						</option>
+						<option value="english" > French
+						</option>
+					</select>
+					<span class="help-block" *ngIf="!ln.valid && ln.touched"> Please select value</span>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<mat-slide-toggle name="enabled" [(ngModel)]="data.enabled" style="margin-top:20px;">Status</mat-slide-toggle>
+				</div>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label required">Subject Name</label>
+					<input  type="text" id="subjectFile" #sub="ngModel" name="subjectFile" required class="form-control" [(ngModel)]="data.subjectFile"
+                        placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!sub.valid && sub.touched"> Please Enter value</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label required">Subject Template</label>
+					<textarea  type="text" id="subjectTemplate" rows="3" #st="ngModel" name="subjectTemplate" required class="form-control" [(ngModel)]="data.subjectTemplate"
+                        placeholder="Enter Value" ></textarea>
+					<span class="help-block" *ngIf="!st.valid && st.touched"> Please Enter value</span>
+				</div>
+			</div>
+		</div> -->
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label required">Body Name</label>
+					<input  type="text" id="bodyFile" #bn="ngModel" name="bodyFile" required class="form-control" [(ngModel)]="data.bodyFile"
+                        placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!bn.valid && bn.touched"> Please Enter value</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					Attributes
+					<mat-radio-group aria-label="Select an option">
+						<mat-radio-button value="{{item.value}}" *ngFor="let item of hiddenDetails; let i = index">{{item.name}}</mat-radio-button>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+
+				<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label required">Body Template</label>
+					<textarea  type="text" rows="3" id="bodyTemplate" #bt="ngModel" name="bodyTemplate" required class="form-control" [(ngModel)]="data.bodyTemplate"
+                        placeholder="Enter Value" ></textarea>
+					<span class="help-block" *ngIf="!bt.valid && bt.touched"> Please Enter value</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- <button type="submit" class="btn btn-default ">Save</button> -->
+	</form>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Cancel</button>
+	<button mat-button (click)="save()" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>

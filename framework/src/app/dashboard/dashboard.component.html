@@ -1,0 +1,187 @@
+<div class="container">
+    <div class="row">
+       <div class="col-md-12">
+          <span class="fa-stack fa-sm float-right" (click)="openDialog()">
+          <i class="fa fa-circle-thin fa-stack-2x"></i>
+          <i class="fa fa-edit fa-stack-1x"></i>
+          </span>
+          <span class="fa-stack fa-sm float-right" (click)="openDialog1()" >
+          <i class="fa fa-circle-thin fa-stack-2x"></i>
+          <i class="fa fa-plus fa-stack-1x"></i>
+          </span>
+       </div>
+    </div>
+    <div class="row" style=" border: 1px solid lightgray; ">
+       <div class="col-md-12">
+          <h5 class>Tasks by Status</h5>
+          <div class="dropdown" style=" float: right; ">
+             <button type="button " class="btn btn-link dropdown-toggle" data-toggle="dropdown" style="color: black; margin-top: -4em;">
+             <i class="fa fa-cog fa-stack-1x"></i>
+             </button>
+             <div class="dropdown-menu" style="padding: 1em;">
+                <p style="
+                   color: gray;
+                   ">Statuses</p>
+                <label style=" display: block; "> <input type="checkbox" class='chkGroup' [(ngModel)]="showhidepregnant" [disabled]="!showhidepregnant && maxNo" (change)="onChange($event.target.checked)"/> Open</label> 
+                <label style=" display: block; "> <input type="checkbox" class='chkGroup' [(ngModel)]="showhidepregnant1" [disabled]="!showhidepregnant1 && maxNo" (change)="onChange($event.target.checked)"/> In Progress</label> 
+                <label style=" display: block; ">  <input type="checkbox" class='chkGroup' [(ngModel)]="showhidepregnant2"[disabled]="!showhidepregnant2 && maxNo" (change)="onChange($event.target.checked)"/> Pending</label> 
+                <label style=" display: block; "> <input type="checkbox" class='chkGroup' [(ngModel)]="showhidepregnant3" [disabled]="!showhidepregnant3 && maxNo" (change)="onChange($event.target.checked)"/> Done</label> 
+                <label style=" display: block; ">  <input type="checkbox" class='chkGroup' [(ngModel)]="showhidepregnant4" [disabled]="!showhidepregnant4 && maxNo" (change)="onChange($event.target.checked)"/> Deleted</label> 
+                <label style=" display: block; ">  <input type="checkbox" class='chkGroup'  [(ngModel)]="showhidepregnant5" [disabled]="!showhidepregnant5 && maxNo" (change)="onChange($event.target.checked)"/> Escaled</label> 
+                <label style=" display: block; ">  <input type="checkbox" class='chkGroup'  [(ngModel)]="showhidepregnant6" [disabled]="!showhidepregnant6 && maxNo" (change)="onChange($event.target.checked)"/> Suspended</label> 
+             </div>
+          </div>
+       </div>
+       <div class="col-md-3" style=" padding: 2em; " *ngIf="showhidepregnant">
+          <h1 
+             style="border-right: 1px solid lightgray;margin-left: 0.7em;font-size: 7em; color: #cf41e2;;">
+             {{statusCount != null && statusCount.OverAllCount != null && statusCount.OverAllCount.Open !=null ?statusCount.OverAllCount.Open : 0}}
+          </h1>
+          <button mat-raised-button color="" style=" width: 10em;
+             margin-left: 4em; background: #cf41e2; color: #fff; ">Open</button>
+       </div>
+       <div class="col-md-3" style=" padding: 2em; " *ngIf="showhidepregnant1">
+          <h1 
+             style="border-right: 1px solid lightgray;margin-left: 0.7em;font-size: 7em; color: #002ad8;">
+             {{statusCount != null && statusCount.OverAllCount != null && statusCount.OverAllCount.InProgress != null ?statusCount.OverAllCount.InProgress : 0}}
+          </h1>
+          <button mat-raised-button color="" style=" width: 10em;
+             margin-left: 4em; background: #002ad8;  color: #fff;">In Progress</button>
+       </div>
+       <div class="col-md-3" style=" padding: 2em; " *ngIf="showhidepregnant2">
+          <h1 
+             style="border-right: 1px solid lightgray;margin-left: 0.7em;font-size: 7em; color: #ea8003;">
+             {{statusCount != null && statusCount.OverAllCount != null &&  statusCount.OverAllCount.Pending != null ? statusCount.OverAllCount.Pending : 0}}
+          </h1>
+          <button mat-raised-button color="" style=" width: 10em;
+             margin-left: 4em; background: #ea8003;  color: #fff;">Pending</button>
+       </div>
+       <div class="col-md-3" style=" padding: 2em; " *ngIf="showhidepregnant3">
+          <h1  style="margin-left: 0.7em;font-size: 7em; color: #37c964;">
+             {{statusCount != null && statusCount.OverAllCount != null && statusCount.OverAllCount.Close != null ? statusCount.OverAllCount.Close : 0}}
+          </h1>
+          <button mat-raised-button color="" style=" width: 10em;
+             margin-left: 4em; background: #37c964;  color: #fff;">Done</button>
+       </div>
+       <div class="col-md-3" style=" padding: 2em; " *ngIf="showhidepregnant4">
+          <h1 style="margin-left: 0.7em;font-size: 7em; color: #ff2466;">
+             {{statusCount != null && statusCount.OverAllCount != null && statusCount.OverAllCount.Deleted != null ? statusCount.OverAllCount.Deleted : 0}}
+          </h1>
+          <button mat-raised-button color="" style=" width: 10em;
+             margin-left: 4em; background: #ff2466;  color: #fff;">Deleted</button>
+       </div>
+       <div class="col-md-3" style=" padding: 2em; " *ngIf="showhidepregnant5">
+          <h1  style="margin-left: 0.7em;font-size: 7em; color: #379bc9;">
+             {{statusCount != null && statusCount.OverAllCount != null && statusCount.OverAllCount.Escalated != null ? statusCount.OverAllCount.Escalated : 0}}
+          </h1>
+          <button mat-raised-button color="" style=" width: 10em;
+             margin-left: 4em; background: #379bc9;  color: #fff;">Escalated</button>
+       </div>
+       <div class="col-md-3" style=" padding: 2em; " *ngIf="showhidepregnant6">
+          <h1 style="margin-left: 0.7em;font-size: 7em; color: #c98a37;">
+             {{statusCount != null && statusCount.OverAllCount != null && statusCount.OverAllCount.Suspended != null ? statusCount.OverAllCount.Suspended : 0}}
+          </h1>
+          <button mat-raised-button color="" style=" width: 10em;
+             margin-left: 4em; background: #c98a37;  color: #fff;">Suspended</button>
+       </div>
+    </div>
+  <div class="row">
+       <div class="col-md-{{layout}}" *ngIf="displayCompletedTasks">
+          <!-- <div class="col-md-12" style=" border: 1px solid lightgray; "> -->
+             <h5 class>Completed Tasks</h5>
+             <!-- <span class="d-inline">Pratish Shelar</span> -->
+            
+             <div class="dropdown" style=" float: right; ">
+                  <button type="button " class="btn btn-link dropdown-toggle" data-toggle="dropdown" style="color: black; margin-top: -4em;">
+                  <i class="fa fa-cog fa-stack-1x"></i>
+                  </button>
+                  <div class="dropdown-menu" style="padding: 1em;"> 
+                     <label style=" display: block; " (click)="displayCompletedTasks = false"> Delete Widget</label> 
+                  </div>
+               </div>
+             <app-pie-chart *ngIf='completedTasks != null' [childMessage]="completedTasks"></app-pie-chart>
+          <!-- </div> -->
+       </div>
+       <div class="col-md-{{layout}}" *ngIf="displayMyTasksToday">
+          <!-- <div class="col-md-12" style=" border: 1px solid lightgray; ">  -->
+             <h5 class>My Tasks Today</h5>
+             <span class="d-inline">{{username}}</span>
+             <!-- <span class="fa-stack fa-sm float-right" >
+                <i class="fa fa-circle-thin fa-stack-2x"></i>
+                <i class="fa fa-cog fa-stack-1x"></i>
+             </span> -->
+             <div class="dropdown" style=" float: right; ">
+                  <button type="button " class="btn btn-link dropdown-toggle" data-toggle="dropdown" style="color: black; margin-top: -4em;">
+                  <i class="fa fa-cog fa-stack-1x"></i>
+                  </button>
+                  <div class="dropdown-menu" style="padding: 1em;"> 
+                     <label style=" display: block; " (click)="displayMyTasksToday = false"> Delete Widget</label> 
+                  </div>
+               </div>
+             <app-mytasks-table style=" width: -webkit-fill-available; "></app-mytasks-table>
+          <!-- </div> -->
+       </div>
+   
+    
+       <div class="col-md-{{layout}}" *ngIf="displayCreatedVsResolved">
+          <!-- <div class="col-md-12" style=" border: 1px solid lightgray; "> -->
+             <h5 class>Created vs. Resolved Tasked, by Queue</h5>
+             <!-- <span class="d-inline">Pratish Shelar</span> -->
+    
+
+             <div class="dropdown" style=" float: right; ">
+                  <button type="button " class="btn btn-link dropdown-toggle" data-toggle="dropdown" style="color: black; margin-top: -4em;">
+                  <i class="fa fa-cog fa-stack-1x"></i>
+                  </button>
+                  <div class="dropdown-menu" style="padding: 1em;"> 
+                     <label style=" display: block; " (click)="displayCreatedVsResolved = false"> Delete Widget</label> 
+                  </div>
+               </div>
+             <!-- <app-pie-chart *ngIf='completedTasks != null' [childMessage]="completedTasks"></app-pie-chart> -->
+             <app-created-vs-resolved-queue *ngIf='getCreatedVsResolvedByQueue != null'
+             [chMessage]="getCreatedVsResolvedByQueue"></app-created-vs-resolved-queue>
+          <!-- </div> -->
+       </div>
+       <div class="col-md-{{layout}}" *ngIf="displayNumberOfTasksByUser">
+          <!-- <div class="col-md-12" style=" border: 1px solid lightgray; "> -->
+             <h5 class>Number of Tasks by User</h5>
+             <!-- <span class="d-inline">Pratish Shelar</span> -->
+            
+
+             <div class="dropdown" style=" float: right; ">
+                  <button type="button " class="btn btn-link dropdown-toggle" data-toggle="dropdown" style="color: black; margin-top: -4em;">
+                  <i class="fa fa-cog fa-stack-1x"></i>
+                  </button>
+                  <div class="dropdown-menu" style="padding: 1em;"> 
+                     <label style=" display: block; " (click)="displayNumberOfTasksByUser = false"> Delete Widget</label> 
+                  </div>
+               </div>
+             <app-number-of-task-users *ngIf='getTaskCount != null' [chilMessage]="getTaskCount"></app-number-of-task-users>
+          <!-- </div> -->
+       </div>
+     
+    
+   
+       <div class="col-md-{{layout}}" *ngIf="displayTasksByDueDate">
+          <!-- <div class="col-md-12" style=" margin-left: -19px; border: 1px solid lightgray; "> -->
+             <h5 class>Tasks by Due Date</h5>
+             <!-- <span class="d-inline">Pratish Shelar</span> -->
+            
+
+             <div class="dropdown" style=" float: right; ">
+                  <button type="button " class="btn btn-link dropdown-toggle" data-toggle="dropdown" style="color: black; margin-top: -4em;">
+                  <i class="fa fa-cog fa-stack-1x"></i>
+                  </button>
+                  <div class="dropdown-menu" style="padding: 1em;"> 
+                     <label style=" display: block; " (click)="displayTasksByDueDate = false"> Delete Widget</label> 
+                  </div>
+               </div>
+             <!-- <app-pie-chart *ngIf='completedTasks != null' [childMessage]="completedTasks"></app-pie-chart> -->
+             <app-tasks-by-duedate *ngIf='getTaskByDuedate != null' [chilMessage]="getTaskByDuedate"></app-tasks-by-duedate>
+             <!-- <app-created-vs-resolved-queue *ngIf='getCreatedVsResolvedByQueue != null' [chMessage]="getCreatedVsResolvedByQueue"></app-created-vs-resolved-queue> -->
+          <!-- </div> -->
+       </div>
+      </div>
+      
+
+ </div>

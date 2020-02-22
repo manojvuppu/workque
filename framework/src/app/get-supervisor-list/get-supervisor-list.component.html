@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Select From List</h1>
+<div mat-dialog-content>
+        <select>
+                <option value="volvo">user 1</option>
+                <option value="saab">user 2</option>
+                <option value="mercedes">user 3</option>
+                <option value="audi">user 4</option>
+              </select>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial style=" background: black; color: #fff; ">Select</button>
+</div>

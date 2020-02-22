@@ -1,0 +1,272 @@
+<!-- <p>creat-admin-customize works!</p>
+<h1 mat-dialog-title *ngIf="!data.id"> Create lifecycle</h1>
+<h1 mat-dialog-title *ngIf="data.id"> Edit lifecycle</h1> -->
+<h1 mat-dialog-title> {{title}} Task Widget </h1>
+<hr>
+<div mat-dialog-content>
+	<mat-horizontal-stepper labelPosition="bottom" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <ng-template matStepLabel>Credentials</ng-template>
+            <label class="title">Details</label>
+            <form role="form" name="form" #f="ngForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label required">Widget Name</label>
+                            <input type="text" id="firstName" #rp="ngModel" name="firstName" required class="form-control"
+                                [(ngModel)]="data.name" placeholder="Enter Value" />
+                            <span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label required fullwidth">Widget Status</label>
+                            <mat-slide-toggle [checked]="data.status === 'true' ? true : false"
+                            (change)="setValue( i, $event )">Status</mat-slide-toggle>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <p>Widget Type</p>
+                            <mat-radio-group aria-label="Select an option" name="active" required [(ngModel)]="data.type">
+                                <mat-radio-button [checked]='true' value="Grid">Grid</mat-radio-button>
+                                <mat-radio-button value="Form">Form</mat-radio-button>
+                            </mat-radio-group>
+                            <span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <button type="submit" class="btn btn-default ">Save</button> -->
+            </form>
+            
+                
+                     
+            <div fxLayout="row" fxLayoutAlign="end">
+                <button (click)="save()" mat-raised-button matStepperNext type="button" color="accent">
+                    Next
+                </button>
+            </div>
+            
+        </mat-step>
+		<!-- <mat-step [stepControl]="firstFormGroup">
+
+			<ng-template matStepLabel>Credentials</ng-template>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label required">Life CycleName</label>
+						<input type="text" id="AddonName" #rp="ngModel" name="name" required class="form-control"
+							[(ngModel)]="data.name" placeholder="Enter Value" />
+						<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<p>Select Life cycle status</p>
+						<mat-radio-group aria-label="Select an option" name="active" required [(ngModel)]="active">
+							<mat-radio-button [checked]='true' value="true">Active</mat-radio-button>
+							<mat-radio-button value="false">In Active</mat-radio-button>
+						</mat-radio-group>
+						<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label class="control-label required">Description</label>
+						<textarea rows="5" type="text" id="AddonName" #rp="ngModel" name="description" required
+							class="form-control" [(ngModel)]="data.description" placeholder="Enter Value"></textarea>
+						<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<button mat-button matStepperNext>Next</button>
+			</div>
+
+        </mat-step> -->
+        <mat-step>
+            <ng-template matStepLabel>Source</ng-template>
+
+
+            <label class="title">Source</label>
+            <form role="form" name="form" #f="ngForm">
+                <div class="row">
+                  <div class="col-md-12">
+                              <div class="form-group">
+                                  <label class="control-label required">Source URl</label>
+                                  <input type="text" id="firstName" #rp="ngModel" name="firstName" required class="form-control"
+                                      [(ngModel)]="data.sourceURL" placeholder="Enter Value" />
+                                  <span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+                              </div>
+                      <div class="form-group">
+                          <label >End Point</label>
+                          <!-- <select class="form-control" id="userGroups" name="userGroups" [(ngModel)]="data.endPointURL">
+                                  <option  *ngFor="let item of userlist; let i = index" value="{{item.method}}"> {{item.method}}
+                          </select> -->
+
+                          <input type="text" id="userGroups" #rp="ngModel" name="userGroups" required class="form-control"
+                                      [(ngModel)]="data.endPointURL" placeholder="Enter Value" readonly/>
+                          <!-- <ng-multiselect-dropdown name="userGroups" [(ngModel)]="data.userGroups"
+                              [placeholder]="'custom placeholder'" [data]="dropdownList1" 
+                              [settings]="dropdownSettings1" (onSelect)="onItemSelect1($event)"
+                              (onSelectAll)="onSelectAll1($event)">
+                          </ng-multiselect-dropdown> -->
+                      </div>
+                      </div>
+                      </div>
+                  </form>
+            <div fxLayout="row" fxLayoutAlign="start">
+                <button mat-raised-button matStepperNext (click)="save();data.value = !data.value;" type="button" color="accent">
+                    Test
+                </button>
+
+                <div style="padding: 10px 0 0 20px" *ngIf="!data.value" class="successmsg"><mat-icon class="active-icon green-600 s-16">check</mat-icon> <span>Tested Successfully</span></div>
+                
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="end">
+                <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                    Previous
+                </button>
+                <button mat-raised-button matStepperNext type="button" color="accent" (click) = "populateAttr()">
+                    Next
+                </button>
+            </div>
+        </mat-step>
+
+<!-- 
+		<mat-step [stepControl]="secondFormGroup">
+
+			<ng-template matStepLabel>Source</ng-template>
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<div class="row">
+
+							<div class="col-md-11">
+								<div class="form-group">
+									<input type="text" id="AddonName"  #rp="ngModel" name="ratePlan" required
+										class="form-control" [(ngModel)]="ratePlan" placeholder="Enter Value" />
+									<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+								</div>
+							</div>
+							<div class="col-md-1">
+								<button class="btn add btn-circle btn-circle-sm m-1" (click)='add(rp.value)'><i
+										class="fa fa-plus"></i></button>
+							</div>
+						</div>
+					</tr>
+					<tr *ngFor="let item of arr; let i = index">
+						<td>
+							{{item.value}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<button mat-button matStepperPrevious>Back</button>
+				<button mat-button matStepperNext>Next</button>
+			</div>
+
+		</mat-step> -->
+		<mat-step>
+			<ng-template matStepLabel>Configure</ng-template>
+            <label class="title">Configure Attributes</label>
+            <div class="bg">
+                <div>
+                    <div class="chiller_cb" *ngFor= "let list of attrKeyValue | keyvalue">
+                        <div class="fullwidth">
+                            <div class="width50" >
+                                <input [id]="list.key" [(ngModel)]="list.key" type="checkbox" checked (change)="onCheckboxChange(list,$event)">
+                                <label [for]=list.key>{{list.value.name}}</label>
+                                <span></span>
+                            </div>
+                            <div class="width50" [hidden]="!list.key">
+                                <div class="form-group" >
+                                    <input type="text" id="list.key" #rp="ngModel" name="name" required class="form-control"
+                                        [(ngModel)]="list.value.name" placeholder="Display name"  />
+                                    <span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="chiller_cb">
+                        <div class="fullwidth">
+                            <div class="width50">
+                                <input id="Attribute2" [(ngModel)]="Attribute2" type="checkbox" checked>
+                                <label for="Attribute2">Attribute 2</label>
+                                <span></span>
+                            </div>
+                            <div class="width50" [hidden]="!Attribute2">
+                                <div class="form-group">
+                                    <input type="text" id="AddonName" #rp="ngModel" name="name" required class="form-control"
+                                        [(ngModel)]="data.name" placeholder="Display name" />
+                                    <span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chiller_cb">
+                        <input id="Attribute3" type="checkbox">
+                        <label for="Attribute3">Attribute 3</label>
+                        <span></span>
+                    </div>
+                    <div class="chiller_cb">
+                        <input id="myCheckbox4" type="checkbox">
+                        <label for="myCheckbox4">Attribute 4</label>
+                        <span></span>
+                    </div>
+                    <div class="chiller_cb">
+                        <input id="myCheckbox5" type="checkbox">
+                        <label for="myCheckbox5">Attribute 5</label>
+                        <span></span>
+                    </div>
+                    <div class="chiller_cb">
+                        <input id="myCheckbox6" type="checkbox">
+                        <label for="myCheckbox6">Attribute 6</label>
+                        <span></span>
+                    </div>
+                    <div class="chiller_cb">
+                        <input id="myCheckbox7" type="checkbox">
+                        <label for="myCheckbox7">Attribute 7</label>
+                        <span></span>
+                    </div>
+                    <div class="chiller_cb">
+                        <input id="myCheckbox8" type="checkbox">
+                        <label for="myCheckbox8">Attribute 8</label>
+                        <span></span>
+                    </div> -->
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end">
+                <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                    Previous
+                </button>
+                <button mat-raised-button matStepperNext type="button" color="accent" (click)="save()">
+                    Save
+                </button>
+            </div>
+			<!-- <div>
+				<button mat-button matStepperPrevious>Back</button>
+				<button mat-button (click)="stepper.reset()">Reset</button>
+			</div> -->
+		</mat-step>
+	</mat-horizontal-stepper>
+
+</div>
+<!-- <div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Cancel</button>
+	<button mat-button (click)="save()" [mat-dialog-close]="data.animal" cdkFocusInitial>Create</button>
+</div> -->

@@ -1,0 +1,225 @@
+<h1 mat-dialog-title *ngIf="!data.id">Create Task Type</h1>
+<h1 mat-dialog-title *ngIf="data.id">Edit Task Type</h1>
+<hr>
+<div mat-dialog-content>
+    <mat-horizontal-stepper labelPosition="bottom" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+
+            <ng-template matStepLabel>Task Type</ng-template>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label required">Name</label>
+                        <input type="text" id="taskType" #rp="ngModel" name="taskType" required class="form-control"
+                            [(ngModel)]="data.taskType" placeholder="Enter Value" />
+                        <span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label required">Description</label>
+                        <input type="text" id="description" #d="ngModel" name="description" required
+                            class="form-control" [(ngModel)]="data.description" placeholder="Enter Value" />
+                        <span class="help-block" *ngIf="!d.valid && d.touched"> Please Enter value</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label required">Queue</label>
+
+                        <select id="queueMPId" name="queueMPId" #ca="ngModel" [(ngModel)]="data.queueMPId" required
+                            class="form-control" value="{{data.queueMPId}}">
+                            <option *ngFor="let item of queue; let i = index" value="{{item.id}}"> {{item.queueName}}
+                            </option>
+
+                        </select>
+                        <!-- <input  type="text" id="AddonName" #i="ngModel" disabled name="id" required class="form-control" [(ngModel)]="data.id"
+											placeholder="Enter Value" /> -->
+                        <span class="help-block" *ngIf="!ca.valid && ca.touched"> Please Enter value</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label required">Task Assign rule</label>
+
+                        <select id="queueAssignRuleId" name="queueAssignRuleId" #cr="ngModel"
+                            [(ngModel)]="data.queueAssignRuleId" required class="form-control"
+                            value="{{data.queueAssignRuleId}}">
+                            <option *ngFor="let item of assignmentrulelist; let i = index" value="{{item.id}}">
+                                {{item.name}}
+                        </select>
+                        <!-- <input  type="text" id="AddonName" #i="ngModel" disabled name="id" required class="form-control" [(ngModel)]="data.id"
+													placeholder="Enter Value" /> -->
+                        <span class="help-block" *ngIf="!cr.valid && cr.touched"> Please Enter value</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label required">Life Cycle</label>
+
+                        <select id="transLifecycleId" name="transLifecycleId" #t="ngModel"
+                            [(ngModel)]="data.transLifecycleId" required class="form-control"
+                            value="{{data.transLifecycleId}}">
+                            <option *ngFor="let item of lifecyclelist; let i = index" value="{{item.id}}"> {{item.name}}
+
+                        </select>
+                        <!-- <input  type="text" id="AddonName" #i="ngModel" disabled name="id" required class="form-control" [(ngModel)]="data.id"
+												placeholder="Enter Value" /> -->
+                        <span class="help-block" *ngIf="!t.valid && t.touched"> Please Enter value</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label required">Fix Work Flow</label>
+
+                        <select id="fixWorkflowId" name="fixWorkflowId" #f="ngModel" [(ngModel)]="data.fixWorkflowId"
+                            required class="form-control" value="{{data.fixWorkflowId}}">
+                            <option value="rule1"> fix work flow 1 </option>
+                            <option value="rule2"> fix work flow 2 </option>
+                        </select>
+                        <!-- <input  type="text" id="AddonName" #i="ngModel" disabled name="id" required class="form-control" [(ngModel)]="data.id"
+														placeholder="Enter Value" /> -->
+                        <span class="help-block" *ngIf="!f.valid && f.touched"> Please Enter value</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+
+            <ng-template matStepLabel>Task Extension</ng-template>
+            <br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Type</th>
+                        <th>Value</th>
+                        <th>Description</th>
+                        <th>Required</th>
+                        <th>Index</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" id="Type" #s="ngModel" name="Attribute" required class="form-control"
+                                [(ngModel)]="Attribute" placeholder="Enter Value" />
+                        </td>
+                        <td>
+                            <input type="text" id="Type" #s="ngModel" name="Type" required class="form-control"
+                                [(ngModel)]="Type" placeholder="Enter Value" />
+
+                        </td>
+                        <td>
+                            <input type="text" id="Value" #s="ngModel" name="Value" required class="form-control"
+                                [(ngModel)]="Value" placeholder="Enter Value" />
+                        </td>
+                        <td>
+                            <input type="text" id="Description" #s="ngModel" name="Description" required
+                                class="form-control" [(ngModel)]="Description" placeholder="Enter Value" />
+                        </td>
+                        <td>
+                            <input type="checkbox" name="Required" [(ngModel)]="Required" class="form-check-input"
+                                value="">
+                        </td>
+                        <td>
+                            <input type="checkbox" name="Index" [(ngModel)]="Index" class="form-check-input" value="">
+
+                        </td>
+                        <td>
+                            <button class="btn btn-default  btn-sm" (click)='add()'>
+                                <span class="fa fa-plus"></span>
+                            </button>
+                        </td>
+
+                    </tr>
+                    <tr *ngFor="let item of data.taskExtensions; let i = index">
+                        <td>
+                            {{item.attributeName}}
+                        </td>
+                        <td>
+                            {{item.attributeType}}
+                        </td>
+                        <td>
+                            {{item.attributeValues}}
+                        </td>
+                        <td>
+                            {{item.taskType}}
+                        </td>
+                        <td>
+                            {{item.attributeRequired}}
+                        </td>
+                        <td>
+                            {{item.TaskType_id}}
+                        </td>
+                        <td>
+                            <button class="btn btn-default  btn-sm" (click)='delete(i)'>
+                                <span class="fa fa-delete"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Task SLA</ng-template>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label required">SLA</label>
+                        <input type="text" id="taskTypeSLANoOfUnits" #s="ngModel" name="taskTypeSLANoOfUnits" required
+                            class="form-control" [(ngModel)]="data.taskTypeSLANoOfUnits" placeholder="Enter Value" />
+                        <span class="help-block" *ngIf="!s.valid && s.touched"> Please Enter value</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <!-- <p>Select Assignment Type</p> -->
+                        <mat-radio-group aria-label="Select an option" name="taskTypeSLAUnit" required
+                            [(ngModel)]="data.taskTypeSLAUnit">
+                            <mat-radio-button value="days">Days</mat-radio-button>
+                            <mat-radio-button value="hours">Hours</mat-radio-button>
+                            <mat-radio-button value="minutes">Minutes</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="save()" [mat-dialog-close]="data" cdkFocusInitial style=" background: black; color: #fff; ">Save</button>
+</div>

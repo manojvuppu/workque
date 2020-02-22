@@ -1,0 +1,103 @@
+<h5> Notification</h5>
+<div class="row">
+	<div class="col-md-3">
+		<ul class="nav nav-pills nav-pills-icons flex-column" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" href="#dashboard-2" role="tab" data-toggle="tab">
+					Notification
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#schedule-2" role="tab" data-toggle="tab">
+					Template
+				</a>
+			</li>
+
+		</ul>
+	</div>
+	<div class="col-md-9">
+		<div class="tab-content">
+			<div class="tab-pane active" id="dashboard-2">
+				<h3>Create and Edit Notification message</h3>
+
+				<div class="row">
+					<div class="col-sm-10">
+						<button type="button" class="btn btn-link" (click)="Deletebulk()"><i class="fa fa-trash-o"
+									aria-hidden="true"></i></button>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="input-group">
+						
+
+							<button class="btn add btn-circle btn-circle-sm m-1" (click)="openDialog1()"><i
+										class="fa fa-plus"></i></button>
+
+						</div>
+					</div>
+				</div>
+
+                <ngx-datatable #table          class="material"           [rows]="rows" [sortType]="SortType.multi"
+                              [columns]="columns"            [columnMode]="'force'"           [headerHeight]="50"
+                              [footerHeight]="50"           [rowHeight]="'auto'"           [limit]="7"
+                              [selected]="selected"           [selectionType]="'checkbox'"
+                              [selectAllRowsOnPage]="false" [displayCheck]="displayCheck"
+                              (select)='onSelect($event)'>
+                </ngx-datatable>
+
+                <ng-template #buttonsTemplate let-row="row" let-value="value">
+                    <!-- <button class="btn btn-primary" (click)='onSelect(row)'>Button
+                                        </button> -->
+                    <button class="btn btn-default  btn-sm" (click)='openDialog1(row)'>
+                        <span class="fa fa-edit"></span>
+                    </button>
+                    <button class="btn btn-default btn-sm" (click)="openDialogconfirm(row.id)">
+                        <span class="fa fa-trash"></span>
+                    </button>
+
+                </ng-template>
+
+			</div>
+			<div class="tab-pane" id="schedule-2">
+				<h3>Create and manage template for notification message</h3>
+				<div class="row">
+					<div class="col-sm-10">
+						<button type="button" class="btn btn-link" (click)="Deletebulk()"><i class="fa fa-trash-o"
+									aria-hidden="true"></i></button>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="input-group">
+						
+
+							<button class="btn add btn-circle btn-circle-sm m-1" (click)="openDialog2(0)"><i
+										class="fa fa-plus"></i></button>
+
+						</div>
+					</div>
+				</div>
+				
+                <ngx-datatable #table1           class="material"           [rows]="rows1" [sortType]="SortType.multi"
+                              [columns]="columns1"            [columnMode]="'force'"           [headerHeight]="50"
+                              [footerHeight]="50"           [rowHeight]="'auto'"           [limit]="7"
+                              [selected]="selected1"           [selectionType]="'checkbox'"
+                              [selectAllRowsOnPage]="false" [displayCheck]="displayCheck"
+                              (select)='onSelect($event)'>
+                </ngx-datatable>
+
+                <ng-template #buttonsTemplate1 let-row="row" let-value="value">
+                    
+                    <button class="btn btn-default  btn-sm" (click)='openDialog2(row)'>
+                        <span class="fa fa-edit"></span>
+                    </button>
+                    <button class="btn btn-default btn-sm" (click)='removeFile(row.id)'>
+                        <span class="fa fa-trash"></span>
+                    </button>
+
+                </ng-template>
+
+			</div>
+
+		</div>
+	</div>
+</div>

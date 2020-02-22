@@ -1,0 +1,242 @@
+<h5> Customize</h5>
+<div class="row">
+	<div class="col-md-3">
+		<ul class="nav nav-pills nav-pills-icons flex-column" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" href="#dashboard-2" role="tab" data-toggle="tab">
+					Widgets
+				</a>
+			</li>
+			<!-- <li class="nav-item">
+				<a class="nav-link" href="#schedule-2" role="tab" data-toggle="tab">
+					Display
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#schedule-3" role="tab" data-toggle="tab">
+					Task Action
+				</a>
+			</li> -->
+		</ul>
+	</div>
+	<div class="col-md-8">
+		<div class="tab-content">
+			<div class="tab-pane active" id="dashboard-2">
+				<div>
+				<button class="btn add btn-circle btn-circle-sm m-1 pull-right" (click)="openDialog1()"><i
+					class="fa fa-plus"></i></button>
+				</div>
+				<h3>Custom Task Widgets</h3>
+				<p>Add or edit custom widgets</p>
+
+				<!-- <div class="bg">
+					<div>
+						<div class="chiller_cb">
+							<input id="myCheckbox" type="checkbox" checked>
+							<label for="myCheckbox">Checkbox checked</label>
+							<span></span>
+						</div>
+						<div class="chiller_cb">
+							<input id="myCheckbox2" type="checkbox">
+							<label for="myCheckbox2">Checkbox unchecked</label>
+							<span></span>
+						</div>
+						<div class="chiller_cb">
+							<input id="myCheckbox3" type="checkbox">
+							<label for="myCheckbox3">Checkbox disabled</label>
+							<span></span>
+						</div>
+						<div class="chiller_cb">
+							<input id="myCheckbox3" type="checkbox">
+							<label for="myCheckbox3">Checkbox disabled</label>
+							<span></span>
+						</div>
+					</div>
+				</div> -->
+			</div>
+			<div class="tab-pane" id="schedule-2">
+				<h3>Status Colors</h3>
+				<p>Choose what colors you would like to represent your task lifecycle states. The tasks will be
+					represented by these colors on the user’s calendar view.</p>
+				<div class="row">
+
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					select status
+  					</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</div>
+
+					<input [(colorPicker)]="color"
+       [style.background]="color"/>
+					</div>
+
+					<div class="row">
+
+						<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   							 select status
+  						</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class="dropdown-item" href="#">Action</a>
+								<a class="dropdown-item" href="#">Another action</a>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div>
+						</div>
+
+						<input [(colorPicker)]="color"
+       [style.background]="color"/>
+					</div>
+						<div class="row">
+
+							<div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    						select status
+  							</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="#">Action</a>
+									<a class="dropdown-item" href="#">Another action</a>
+									<a class="dropdown-item" href="#">Something else here</a>
+								</div>
+							</div>
+
+							<input [(colorPicker)]="color"
+       [style.background]="color"/>
+					</div>
+						</div>
+						<div class="tab-pane" id="schedule-3">
+
+							<div class="row">
+								<h3>List View Individual Actions </h3>
+								<p>Choose what actions you would like to see against each task in your List view, The
+									actions will apply to the ‘My Tasks’ view for all team members, Supervisors will see
+									these
+									actions on their team queues.</p>
+
+								<img src="..." class="img-fluid" alt="Responsive image">
+
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="">Delete
+  							</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="">Assign
+  								</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="" disabled>Escalate
+										</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="" disabled>Edit
+										</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+   											 <input type="checkbox" class="form-check-input" value="" disabled>Mark for Follow
+  								</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    							<input type="checkbox" class="form-check-input" value="" disabled>Complete
+  						</label>
+								</div>
+							</div>
+							<br>
+
+							<div class="row">
+								<h3>List View Bulk Actions </h3>
+								<p>Choose what actions you would like to execute in bulk. These actions will be
+									available on the list view of ‘My Tasks’ and additionally for Supervisors on each of
+									the ‘WorkQueues’</p>
+
+								<img src="..." class="img-fluid" alt="Responsive image">
+
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="">Delete
+  							</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="">Assign
+  								</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="" disabled>Escalate
+										</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="" disabled>Edit
+										</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+   											 <input type="checkbox" class="form-check-input" value="" disabled>Mark for Follow
+  								</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    							<input type="checkbox" class="form-check-input" value="" disabled>Complete
+  						</label>
+								</div>
+							</div>
+
+							<br>
+							<div class="row">
+								<h3>Task Detail Actions </h3>
+								<p>Choose what actions you would like to see in your task detail view. These actions
+									will appear on the task when the user clicks on a task in his ‘MyTasks. view.
+									Supervisors will
+									see these actions on the tasks in their Work Queues.</p>
+
+								<img src="..." class="img-fluid" alt="Responsive image">
+
+								<div class="row">
+									<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="">Delete
+  							</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="">Assign
+  								</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="" disabled>Escalate
+										</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    								<input type="checkbox" class="form-check-input" value="" disabled>Edit
+										</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+   											 <input type="checkbox" class="form-check-input" value="" disabled>Mark for Follow
+  								</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+    							<input type="checkbox" class="form-check-input" value="" disabled>Complete
+  						</label>
+								</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>

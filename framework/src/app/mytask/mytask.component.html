@@ -1,0 +1,1318 @@
+<mat-sidenav position="end" #sidenav [mode]="over"
+	[ngClass]="{'customWidth1' : conditionFlag, 'customWidth2' : !conditionFlag }">
+	<!-- <p><button mat-button >x</button></p> -->
+	<!-- <p><button mat-button >make screen</button></p> -->
+	<div class="row">
+		<div [ngClass]="{'col-md-12' : conditionFlag, 'col-md-5' : !conditionFlag }">
+			<div class="row">
+				<div class="col-md-4">
+					<h3 class="d-inline blue">{{ Name }}</h3><span class="d-inline blue">{{queuename}}</span>
+				</div>
+				<div class="col-md-8">
+					<div style="float: right;">
+						<button (click)="openDialog1()" mat-icon-button aria-label="Example icon-button with a menu">
+							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						</button>
+
+						<!-- <span class="mr-4"> <i class="fa fa-pencil-square-o" (click)="openDialog()"
+								aria-hidden="true"></i></span> -->
+						<!-- <button mat-icon-button aria-label="Example icon-button with a menu">
+							<i class="fa fa-flag-o" aria-hidden="true"></i>
+						</button> -->
+
+						<!-- <span class="mr-4"> <i class="fa fa-flag-o" aria-hidden="true"></i></span> -->
+
+						<!-- <span class="mr-4"> <i class="fa fa-envelope-open" (click)="assigntask()" aria-hidden="true"></i></span> -->
+						<!-- <button mat-icon-button [matMenuTriggerFor]="menu1"
+							aria-label="Example icon-button with a menu">
+							<i class="fa fa-user-o" aria-hidden="true"></i>
+						</button>
+						<mat-menu #menu1="matMenu">
+							<button mat-menu-item (click)="assigntaskfromdetailsscreen()">
+								<mat-icon>user</mat-icon>
+								<span>pratish</span>
+							</button>
+						</mat-menu> -->
+
+						<!-- <button (click)="updatestatusfunction()" mat-icon-button
+							aria-label="Example icon-button with a menu">
+							<i class="fa fa-check" aria-hidden="true"></i>
+						</button> -->
+
+						<!-- <span class="mr-4"> <i class="fa fa-check" (click)="updatestatusfunction()"
+								aria-hidden="true"></i></span> -->
+
+						<button style=" height: 25px; width: 25px; " class="btn open btn-circle btn-circle-sm mr-4"
+							(click)="screenMode()">
+
+							<i *ngIf="conditionFlag" class="fa fa-arrow-left" aria-hidden="true" style="color: #fff;
+								font-size: 14px; top: -4px;"></i>
+
+							<i *ngIf="!conditionFlag" class="fa fa-arrow-right" aria-hidden="true"
+								style="color: #fff; font-size: 14px; top: -4px;"></i>
+						</button>
+
+						<!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+							<mat-icon>more_vert</mat-icon>
+						</button>
+						<mat-menu  #menu="matMenu">
+							<button *ngFor="let event of taskactions" mat-menu-item>
+								<mat-icon>Self Assign</mat-icon>
+								{{let.Action}}
+							</button>
+							
+						</mat-menu> -->
+
+						<button mat-icon-button [matMenuTriggerFor]="tabledriven">
+							<mat-icon>more_vert</mat-icon>
+						</button>
+
+						<mat-menu #tabledriven="matMenu">
+							<ng-container *ngFor="let item of taskactions">
+								<button mat-menu-item (click)="select(item.Action)">{{ item.Action }}</button>
+								<!-- <button *ngIf=item.elementRef  mat-menu-item [matMenuTriggerFor]=item.elementRef>{{ item.Action }}</button> -->
+							</ng-container>
+						</mat-menu>
+
+						<button (click)="screenMode1(sidenav)" mat-icon-button
+							aria-label="Example icon-button with a menu">
+							<i class="fa fa-times" aria-hidden="true"></i>
+						</button>
+
+						<!-- <span class="mr-4" (click)="screenMode1(sidenav)"> <i class="fa fa-times"
+								aria-hidden="true"></i></span> -->
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<mat-card class="example-card">
+						<!-- <mat-card-header>
+							<mat-card-title class="blue fs-16">Task Summary</mat-card-title>
+						</mat-card-header> -->
+						<mat-card-content>
+							<div class="row">
+								<div class="col-lg-12" style="color:#174A84;">
+									Task Summary
+									<!-- <button class="btn btn-secondary float-right">Button</button> -->
+									<button type="button" class="btn btn-default float-right" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog"
+											aria-hidden="true"></i>
+									</button>
+
+									<div class="dropdown-menu dropdown-menu-right">
+										<a class="dropdown-item" href="#"> <input type="checkbox"
+												class="form-check-input" value="all" checked>All</a>
+											<a class="dropdown-item" href="#"> <input type="checkbox"
+												class="form-check-input" value="id">Id</a>
+												<a class="dropdown-item" href="#"> <input type="checkbox"
+												class="form-check-input" value="queuename">Queue name</a>
+													<a class="dropdown-item" href="#"> <input type="checkbox"
+												class="form-check-input" value="description"> Description</a>
+														<!-- <div role="separator" class="dropdown-divider"></div> -->
+														<a class="dropdown-item" href="#"> <input type="checkbox"
+												class="form-check-input" value="status">
+											Status</a>
+															<!-- <div role="separator" class="dropdown-divider"></div> -->
+
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="form-group">
+
+
+											<button mat-button [matMenuTriggerFor]="statuslisting" class="chip" style="font-size:12px; width:110px;">
+												<!-- <mat-icon>more_vert</mat-icon> -->
+													Status: 
+													<p *ngIf="!Status" style="margin: -15px 0px 0px 0px;">No Status</p>
+													<p *ngIf="Status" style="margin: -15px 0px 0px 0px;">{{Status}}</p>
+											</button>
+
+											<mat-menu #statuslisting="matMenu">
+												<ng-container *ngFor="let event of statuslist">
+													<button  mat-menu-item (click)="changestatus(event.nextStatus)">{{ event.nextStatus }}</button>
+													<!-- <button *ngIf=item.elementRef  mat-menu-item [matMenuTriggerFor]=item.elementRef>{{ item.Action }}</button> -->
+												</ng-container>
+											</mat-menu>
+											<!-- 
+											<select class="form-control" id="Status" name="Status" [(ngModel)]="Status"
+												value="{{Status}}">
+												<option *ngFor="let event of statuslist" value="{{ event.nextStatus }}">
+													{{ event.nextStatus }}
+												</option>
+											</select> -->
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+
+										<button mat-raised-button class="chip" style=" font-size:12px; height:55px; width:110px;background: transparent;" (click)="picker.open()">Due Date
+										<p style="margin-top:-15px;">
+											<mat-form-field floatLabel="never" style="margin: -15px 0px -80px 0px; font-size:12px; width:70px;" >
+  											<input matInput  [min]="minDate"  [matDatepicker]="picker" [(ngModel)]="DueDate" placeholder="Choose a date">
+  											<mat-datepicker #picker></mat-datepicker>
+											</mat-form-field>
+										</p>
+										</button>
+
+
+										<!-- <mat-menu #statuslisting="matMenu">
+												<ng-container *ngFor="let event of statuslist">
+													<button  mat-menu-item (click)="changestatus(event.nextStatus)">{{ event.nextStatus }}</button>
+													<!-- <button *ngIf=item.elementRef  mat-menu-item [matMenuTriggerFor]=item.elementRef>{{ item.Action }}</button> 
+												</ng-container>
+											</mat-menu> -->
+
+										<!-- <label for="exampleFormControlSelect1">Due Date</label>
+
+										<input type="date" min="{{now | date:'yyyy-MM-dd'}}" name="DueDate"
+											[(ngModel)]="DueDate"> -->
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+
+										<button mat-button [matMenuTriggerFor]="prioritylisting" class="chip" style=" font-size:12px; width:110px;">
+
+													priority: 
+													<p  *ngIf="!Priority" style="margin: -15px 0px 0px 0px;">No priority</p>
+													<p *ngIf="Priority" style="margin: -15px 0px 0px 0px;">{{Priority}}</p>
+
+													
+											</button>
+
+										<mat-menu #prioritylisting="matMenu">
+											<ng-container *ngFor="let event of priority">
+												<button  mat-menu-item (click)="changepriority(event.description)">{{ event.description }}</button>
+												<!-- <button *ngIf=item.elementRef  mat-menu-item [matMenuTriggerFor]=item.elementRef>{{ item.Action }}</button> -->
+											</ng-container>
+										</mat-menu>
+
+										<!-- <label for="priority">priority</label>
+											<select class="form-control" id="Priority" name="Priority"
+											[(ngModel)]="Priority">
+											<option *ngFor="let event of priority" value="{{event.description}}">
+												{{event.description}}
+											</option>
+										</select> -->
+
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<button mat-button [matMenuTriggerFor]="userlisting" class="chip" style=" font-size:12px; width:110px;">
+												<!-- <mat-icon>more_vert</mat-icon> -->
+													Assign: 
+												
+													<p *ngIf="!Assign" style="margin: -15px 0px 0px 0px;">Not assigned</p>
+													<p *ngIf="Assign" style="margin: -15px 0px 0px 0px;">{{Assign | slice:0:7}}</p>
+											</button>
+
+										<mat-menu #userlisting="matMenu">
+											<ng-container *ngFor="let event of users">
+												<button  mat-menu-item (click)="assigntaskfromdetailsscreen(event.email)">{{ event.userName | slice:0:4 }}</button>
+												<!-- <button *ngIf=item.elementRef  mat-menu-item [matMenuTriggerFor]=item.elementRef>{{ item.Action }}</button> -->
+											</ng-container>
+										</mat-menu>
+
+										<!-- <label for="Assign">Assign User</label>
+											<select (ngModelChange)="assigntaskfromdetailsscreen($event)"
+											class="form-control" id="exampleFormControlSelect1" name="Assign"
+											[(ngModel)]="Assign">
+											<option *ngFor="let event of users" value="{{event.email}}">
+												{{event.userName}}
+											</option>
+										</select> -->
+									</div>
+								</div>
+							</div>
+							<div class="" id="summary1">
+								<div class="collapse" id="collapseSummary1">
+									<div class="row">
+										<div class="col-md-4">
+											<label class=" gray">Task Id: </label>
+											<label class=" blue">{{QueueId}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class=" gray">Error Code: </label>
+											<label class=" blue">{{errorDescription}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class="gray">Updated Date: </label>
+											<label class=" blue">{{taskdetailUpdatedBy}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class="gray">errorCode: </label>
+											<label class="blue">{{errorCode}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class=" gray">Created By: </label>
+											<label class=" blue">{{taskdetailCreatedBy}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class="gray">Updated by: </label>
+											<label class=" blue">{{taskdetailUpdatedBy}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class="gray">Task Description </label>
+											<label class=" blue">{{ description }}</label>
+										</div>
+										<div class="col-md-3 col-lg-4" *ngFor=" let item of taskextension">
+											<label class="gray">{{item.attributeName}} </label>
+											<label class="blue">{{item.attributeValue}}</label>
+										</div>
+
+									</div>
+								</div>
+								<a class="collapsed" data-toggle="collapse" href="#collapseSummary1"
+									aria-expanded="false" aria-controls="collapseSummary1"></a>
+							</div>
+						</mat-card-content>
+					</mat-card>
+				</div>
+				<div class="col-md-12 mt-3">
+					<mat-card class="example-card">
+						<!-- <mat-card-header>
+							<mat-card-title class="blue fs-16"> 
+								
+							</mat-card-title>
+						</mat-card-header> -->
+						<mat-card-content>
+							<div class="row">
+								<div class="col-lg-12" style="color:#174A84;">
+									Task Details
+									<!-- <button class="btn btn-secondary float-right">Button</button> -->
+									<button type="button" class="btn btn-default float-right" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog"
+											aria-hidden="true"></i>
+									</button>
+
+									<div class="dropdown-menu dropdown-menu-right">
+										<a class="dropdown-item" href="#"> <input type="checkbox"
+												class="form-check-input" value="all" checked>All</a>
+											<a class="dropdown-item" href="#"> <input type="checkbox"
+												class="form-check-input" value="id">Id</a>
+												<a class="dropdown-item" href="#"> <input type="checkbox"
+												class="form-check-input" value="queuename">Queue name</a>
+													<a class="dropdown-item" href="#"> <input type="checkbox"
+												class="form-check-input" value="description"> Description</a>
+														<!-- <div role="separator" class="dropdown-divider"></div> -->
+														<a class="dropdown-item" href="#"> <input type="checkbox"
+												class="form-check-input" value="status">
+											Status</a>
+									</div>
+								</div>
+							</div>
+							<div class="" id="summary">
+								<div class="collapse" id="collapseSummary">
+									<div class="row">
+										<div class="col-md-4">
+											<label class=" gray">Task Id: </label>
+											<label class=" blue">{{QueueId}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class=" gray">Error Code: </label>
+											<label class=" blue">{{errorDescription}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class="gray">Updated Date: </label>
+											<label class=" blue">{{taskdetailUpdatedBy}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class="gray">errorCode: </label>
+											<label class="blue">{{errorCode}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class=" gray">Created By: </label>
+											<label class=" blue">{{taskdetailCreatedBy}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class="gray">Updated by: </label>
+											<label class=" blue">{{taskdetailUpdatedBy}}</label>
+										</div>
+										<div class="col-md-4">
+											<label class="gray">Task Description </label>
+											<label class=" blue">{{ description }}</label>
+										</div>
+										<div class="col-md-3 col-lg-4" *ngFor=" let item of taskextension">
+											<label class="gray">{{item.attributeName}} </label>
+											<label class="blue">{{item.attributeValue}}</label>
+										</div>
+
+									</div>
+								</div>
+								<a class="collapsed" data-toggle="collapse" href="#collapseSummary"
+									aria-expanded="false" aria-controls="collapseSummary"></a>
+							</div>
+						</mat-card-content>
+					</mat-card>
+				</div>
+
+
+
+				<div class="col-md-12 mt-3">
+					<mat-card class="example-card">
+						<mat-card-header>
+							<mat-card-title class="blue"></mat-card-title>
+						</mat-card-header>
+						<mat-card-content>
+							<div class="">
+								<div class="row">
+									<div class="col-md-12 col-lg-12">
+										<ul class="nav nav-tabs" id="myTab" role="tablist">
+											<li class="nav-item">
+												<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+													role="tab" aria-controls="home" aria-selected="true">Comments</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+													role="tab" aria-controls="profile" aria-selected="false">History</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"
+													role="tab" aria-controls="contact"
+													aria-selected="false">Activity</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" id="contact-tab1" data-toggle="tab" href="#contact1"
+													role="tab" aria-controls="contact1" aria-selected="false">Related
+													Tasks</a>
+											</li>
+										</ul>
+										<div class="tab-content" id="myTabContent">
+											<div class="tab-pane fade show active" id="home" role="tabpanel"
+												aria-labelledby="home-tab">
+												<div style="overflow:scroll; height:100px;">
+													<div class="row" *ngFor=" let item of taskNotes">
+														<div class="col-md-1">
+															<mat-icon
+																style="margin-right: 1px; margin-top: 11px; font-size: 2em;">
+																person</mat-icon>
+														</div>
+														<div class="col-md-8" style=" padding: 10px; ">
+															<span class="blue">{{item.createdBy}}</span>
+															<span class="blue"
+																style=" padding-left: 2em; ">{{item.updatedDate}}</span>
+															<p class="blue" style=" font-size: 12px; ">
+																{{item.description}}
+															</p>
+														</div>
+														<div class="col-md-3">
+															<mat-icon *ngIf="item.attachment1GUID"
+																(click)="getattachment(item.attachment1GUID)"
+																style="margin-right: 1px; margin-top: 11px; font-size: 2em;">
+																insert_drive_file
+																<p style="font-size:10px">
+																	{{ item.attachment1Name | slice:0:5}}</p>
+															</mat-icon>
+
+															<mat-icon *ngIf="item.attachment2GUID"
+																(click)="getattachment(item.attachment2GUID)"
+																style="margin-right: 1px; margin-top: 11px; font-size: 2em;">
+																insert_drive_file
+																<p style="font-size:10px">
+																	{{ item.attachment2Name | slice:0:5}}</p>
+															</mat-icon>
+
+															<mat-icon *ngIf="item.attachment3GUID"
+																(click)="getattachment(item.attachment3GUID)"
+																style="margin-right: 1px; margin-top: 11px; font-size: 2em;">
+																insert_drive_file
+																<p style="font-size:10px">
+																	{{ item.attachment3Name | slice:0:5}}</p>
+															</mat-icon>
+
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-10" style="margin-top: 10px;">
+														<div class="form-group">
+															<textarea [(ngModel)]="comment" name="comment"
+																class="form-control" id="comment" rows="2"></textarea>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group">
+															<button class="btn add btn-circle btn-circle-md m-1"
+																(click)="Addcomment()"><i
+																	class="fa fa-plus"></i></button>
+														</div>
+													</div>
+
+													<label for="upload-photo">Attach:</label>
+													<input type="file" name="photo" id="upload-photo"
+														(change)="onFileChanged($event)" />
+													<input type="text" disabled style="width: 450px; margin-top: -9px; margin-left: 5px; background-color: rgb(245, 245, 245); border-style: none; border-color: Transparent; overflow: auto; outline: none;" name="fname" id="myTextareaa">
+
+													<!-- <textarea disabled id="myTextareaa" 
+													style="width: 320px; margin-top: -22px; background-color: rgb(245, 245, 245); height:50px; border-style: none; border-color: Transparent; overflow: auto; outline: none;">
+												   </textarea> -->
+
+													<!-- <input type="file" multiple
+														(change)="onFileChanged($event)" id="customFile" name="myFile"> -->
+													<!-- <textarea id="myTextarea" rows="2"></textarea>
+													 -->
+													<!-- <input type="file"
+														class="custom-file-input" > -->
+
+													<!-- <mat-icon  style="margin-top: 1px;">
+														attachment</mat-icon> -->
+													<!-- <span>{{tempObj.documentName}}</span> -->
+
+
+												</div>
+
+											</div>
+											<div class="tab-pane fade" id="profile" role="tabpanel"
+												aria-labelledby="profile-tab">
+												<div style="overflow:scroll; height:300px;">
+													<table class="table table-hover">
+														<thead>
+															<tr>
+
+															</tr>
+														</thead>
+														<tbody>
+															<tr *ngFor="let item of history; let i = index">
+																<td>
+																	<div class="row">
+																		<div class="col-md-6">
+																			<p class="ml-2 blue">{{item.createdBy}}
+																			</p>
+																		</div>
+																		<div class="col-md-6">
+																			<p class="ml-2 blue">{{item.createdDate}}
+																			</p>
+																		</div>
+																		<hr>
+																		<div class="col-md-3">
+																			<p class="gray">Field</p>
+																			<p class="blue">{{item.attributeName}}</p>
+
+																		</div>
+																		<div class="col-md-3">
+																			<p class="gray">Original Value</p>
+																			<p class="blue">{{item.beforeValue}}</p>
+																		</div>
+																		<div class="col-md-3">
+																			<p class="gray">New Value</p>
+																			<p class="blue">{{item.afterValue}}</p>
+																		</div>
+																		<div class="col-md-3">
+																			<p class="gray">Actions</p>
+																			<p class="blue">{{item.Action}}</p>
+																		</div>
+
+																		<hr>
+																	</div>
+
+																</td>
+
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="contact" role="tabpanel"
+												aria-labelledby="contact-tab">
+												<div class="row">
+													<div class="col-md-12">
+														<p class="blue">Today</p>
+
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-9">
+														<p class="ml-2 blue">Will you tell me something about yourself?
+														</p>
+
+													</div>
+													<div class="col-md-3">
+														<p class="blue">10 hours ago</p>
+
+													</div>
+													<div class="col-md-9">
+														<p class="ml-2 blue">Will you tell me something about yourself?
+														</p>
+
+													</div>
+													<div class="col-md-3">
+														<p class="blue">10 hours ago</p>
+
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="contact1" role="tabpanel"
+												aria-labelledby="contact-tab1">
+												<table class="table table-hover">
+													<thead>
+														<tr>
+															<th>Task Id</th>
+															<th>Task Name</th>
+															<th>Description</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr *ngFor="let list of relatedtask ; let i = index">
+															<td><a href="">{{list.id}}</a></td>
+															<td>{{list.name}}</td>
+															<td>{{list.description}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</mat-card-content>
+					</mat-card>
+				</div>
+			</div>
+		</div>
+		<div [ngClass]="{'hideTwo' : conditionFlag, 'col-md-7' : !conditionFlag }" style=" margin-top: 2.4em; ">
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<mat-card class="example-card">
+							<mat-card-header>
+								<mat-card-title class="blue fs-16">Order Summary</mat-card-title>
+							</mat-card-header>
+							<mat-card-content>
+								<div class="">
+
+									<div class="row">
+										<div class="col-md-4 col-lg-4">
+											<label class="float-left gray">Account No:</label>
+											<label class="float-left gray d-block">Name:</label>
+											<label class="float-left gray d-block">Address:</label>
+											<label class="float-left gray d-block">Email:</label>
+
+
+										</div>
+										<div class="col-md-4 col-lg-4">
+
+											<label class="blue">12332</label>
+											<label class="blue d-block">John Snow</label>
+											<label class="blue d-block">435 Wilson</label>
+											<label class="blue d-block">John@gmail.com</label>
+
+										</div>
+										<div class="col-md-4 col-lg-4">
+
+											<label class="blue" style=" margin-left: -2em; "></label>
+										</div>
+
+									</div>
+								</div>
+							</mat-card-content>
+						</mat-card>
+
+					</div>
+					<div class="col-md-6">
+						<mat-card class="example-card">
+							<mat-card-header>
+								<mat-card-title class="blue fs-16">Customer Info</mat-card-title>
+							</mat-card-header>
+							<mat-card-content>
+								<div class="">
+
+									<div class="row">
+										<div class="col-md-4 col-lg-4">
+											<label class="float-left gray">Order Id</label>
+											<label class="float-left gray d-block">Order Type</label>
+											<label class="float-left gray d-block">Due Date</label>
+											<label class="float-left gray d-block">Status Id</label>
+
+
+										</div>
+										<div class="col-md-4 col-lg-4">
+
+											<label class="blue">12332</label>
+											<label class="blue d-block">Install</label>
+											<label class="blue d-block">11/22/1123</label>
+											<label class="blue d-block">In Progress</label>
+
+										</div>
+										<div class="col-md-4 col-lg-4">
+
+											<label class="blue" style=" margin-left: -2em; "></label>
+										</div>
+
+									</div>
+								</div>
+							</mat-card-content>
+						</mat-card>
+
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-md-12">
+						<mat-card class="example-card">
+							<mat-card-header>
+								<mat-card-title class="blue fs-16">Fix Workflow</mat-card-title>
+							</mat-card-header>
+							<mat-card-content>
+								<div class="">
+
+									<div class="row">
+										<div class="col-md-12 col-lg-12">
+											<mat-horizontal-stepper #stepper>
+												<mat-step>
+													<div class="row">
+														<div class="col-md-6">
+															<mat-form-field>
+																<input matInput placeholder="Label 1">
+															</mat-form-field>
+
+														</div>
+														<div class="col-md-6">
+															<mat-form-field>
+																<input matInput placeholder="Label 2">
+															</mat-form-field>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-6">
+															<mat-form-field>
+																<input matInput placeholder="Label 3">
+															</mat-form-field>
+														</div>
+														<div class="col-md-6">
+															<mat-form-field>
+																<input matInput placeholder="Label 4">
+															</mat-form-field>
+														</div>
+													</div>
+												</mat-step>
+												<mat-step>
+													Step 2
+												</mat-step>
+												<mat-step>
+													Step 3
+												</mat-step>
+												<!-- one option -->
+												<div>
+													<button mat-button matStepperPrevious type="button">Back</button>
+													<button mat-button matStepperNext type="button">Next</button>
+												</div>
+											</mat-horizontal-stepper>
+
+											<!-- second option -->
+											<div>
+												<button (click)="goBack(stepper)" type="button"
+													[disabled]="stepper.selectedIndex === 0">Back</button>
+												<button (click)="goForward(stepper)" type="button"
+													[disabled]="stepper.selectedIndex === stepper._steps.length-1">Next</button>
+
+												<!-- using totalStepsCount -->
+												<!-- <button (click)="goForward(stepper)" type="button" [disabled]="stepper.selectedIndex === totalStepsCount-1">Next</button> -->
+											</div>
+											<!--------------------------------------------------------------------------------------->
+										</div>
+									</div>
+								</div>
+							</mat-card-content>
+						</mat-card>
+						<!--------------------------------------------------------------------------------------->
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-md-12">
+						<mat-card class="example-card">
+							<mat-card-header>
+								<mat-card-title class="blue fs-16"> Appointment</mat-card-title>
+							</mat-card-header>
+							<mat-card-content>
+								<div class="">
+									<div class="row">
+										<div class="col-md-12 col-lg-12">
+											<table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
+
+												<!--- Note that these columns can be defined in any order.
+																  The actual rendered columns are set as a property on the row definition" -->
+
+												<!-- Position Column -->
+												<ng-container matColumnDef="id">
+													<th mat-header-cell *matHeaderCellDef> Id </th>
+													<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+												</ng-container>
+
+												<!-- Name Column -->
+												<ng-container matColumnDef="description">
+													<th mat-header-cell *matHeaderCellDef> Description </th>
+													<td mat-cell *matCellDef="let element"> {{element.description}}
+													</td>
+												</ng-container>
+
+												<!-- Weight Column -->
+												<ng-container matColumnDef="date">
+													<th mat-header-cell *matHeaderCellDef> Date </th>
+													<td mat-cell *matCellDef="let element"> {{element.date}} </td>
+												</ng-container>
+
+												<!-- Symbol Column -->
+												<ng-container matColumnDef="agent">
+													<th mat-header-cell *matHeaderCellDef> Agent Name </th>
+													<td mat-cell *matCellDef="let element"> {{element.agent}} </td>
+												</ng-container>
+
+												<tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+												<tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</mat-card-content>
+						</mat-card>
+						<!--------------------------------------------------------------------------------------->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav>
+<!-- <mat-tab-group style="filter: blur(4px);"> -->
+<mat-tab-group [ngStyle]="styleOne?{'filter': 'blur(4px)'} : {'filter': 'blur(0px)'}">
+	<mat-tab label="List">
+		<div class="row" style="margin-top: 21px;">
+			<div class="col-sm-9">
+				<div class="btn-toolbar">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+							{{viewname}}<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" style="width:200px">
+							<li>
+								<a class="dropdown-item" style="background-color: gray; color: azure;"
+									(click)="openDialog2(taskPriorityList,taskStatusList, allColumns);">
+									Add view
+								</a>
+							</li>
+							<li *ngFor="let list of viewslist; let i = index">
+								<a class="dropdown-item" (click)="onviewSelect(i);">{{ list.name }}</a>
+							</li>
+						</ul>
+					</div>
+
+					<!-- <div class="select-style">
+						<select ngModel (ngModelChange)="onviewSelect($event)">
+							<option *ngFor="let list of viewslist; let i = index" value="{{ list.name }}">{{ list.name }}</option>
+						</select>
+					</div> -->
+
+					<!-- <button type="button" class=" btn btn-light dropdown megamenu" style="margin-left: 5em;background: #EFEFEF 0% 0% no-repeat padding-box;margin-right: 2em;"><a id="megamneu"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-filter"
+								aria-hidden="true"></i>Filtererr</a>
+						<div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0">
+							<div class="container">
+								<div class="row bg-white rounded-0 m-0 shadow-sm">
+									<div class="col-lg-12 col-xl-12">
+										<div class="p-4">
+											<div class="row">
+												<div class="col-lg-4 mb-4">
+													<h6 class="font-weight-bold text-uppercase">status</h6>
+													<ul class="list-unstyled" *ngFor="let list of taskPriorityList">
+														<li class="nav-item">
+															<a href=""
+																class="nav-link text-small pb-0">
+																<input type="checkbox"
+																	[checked]="" name="{{list.description}}"
+																	value="{{list.description}}">{{list.description}}
+															</a>
+														</li>
+													</ul>
+												</div>
+												<div class="col-lg-4 mb-4">
+													<h6 class="font-weight-bold text-uppercase">status</h6>
+													<ul class="list-unstyled" *ngFor="let list of taskStatusList">
+														<li class="nav-item"><a href=""
+																class="nav-link text-small pb-0"><input type="checkbox"
+																	[checked]="" name="{{list.taskStatusName}}"
+																	value="{{list.Status}}">{{list.taskStatusName}}</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</button> -->
+					<div class="dropdown" style="margin: 0px 20px 0px 20px ">
+						<button class="btn btn-light" href="#" role="button" id="dropdownMenuLink"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-filter"
+								aria-hidden="true"></i>Filter
+						</button>
+
+						<div class="dropdown-menu" style="width:600px; height:400px" aria-labelledby="dropdownMenuLink">
+							<div class="row">
+								<div class="col-md-4">
+									<h6 style="margin-left:10px;"> Status</h6>
+									<div class="dropdown-item" *ngFor="let tag of taskPriorityList; let i = index;">
+										<input type="checkbox" id="box{{i}}" name="{{tag.name}}" [(ngModel)]="tag.checked" >
+										<label style="margin-left: 10px" for="scales">{{tag.name}}</label>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<h6 style="margin-left:10px;"> Priority</h6>
+									<div class="dropdown-item" #list *ngFor="let tag of taskStatusList">
+										<input type="checkbox" id="{{tag.name}}" name="{{tag.name}}" [(ngModel)]="tag.checked" >
+										<label style="margin-left: 10px" for="scales">{{tag.name}}</label>
+									</div>
+								</div>
+							</div>
+							<button type="button" class="btn btn-sm btn-dark float-right"  (click)="applyfilter(taskPriorityList,taskStatusList, allColumns )"  style="margin-right:20px;">Apply Filter</button>
+						</div>
+
+					</div>
+
+					<div class="dropdown">
+						<button type="button" class="btn btn-light" data-toggle="dropdown" ><i class="fa fa-eye-slash"
+								aria-hidden="true"></i>Hide Column</button>
+						<div class="dropdown-menu" style="width: 200px !important;">
+							<div *ngFor="let col of hidecolums">
+								<input  type="checkbox"  style="margin-left: 5px;" [id]="col.prop"
+									 (click)="toggle(col)"  [(ngModel)]="col.checked"  value="{{ col.name}}" />
+								  <label [attr.for]="col.name">{{ col.name}}</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- <div class="dropdown">
+						<button type="button" class="btn btn-light" data-toggle="dropdown" ><i class="fa fa-eye-slash"
+								aria-hidden="true"></i>Hide Column</button>
+						<div class="dropdown-menu" style="width: 200px !important;">
+							<div *ngFor="let col of allColumns">
+								<input  type="checkbox"  style="margin-left: 5px;" [id]="col.prop"
+									 (click)="toggle(col)"  [ngModel]="isChecked(col)"  value="{{ col.prop }}" />
+								  <label [attr.for]="col.prop">{{ col.prop }}</label>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="pull-right">
+					<button class="btn open btn-circle btn-circle-sm m-1">{{ open }} </button>
+					<button class="btn pending btn-circle btn-circle-sm m-1"> {{ Close }} </button>
+					<button class="btn done btn-circle btn-circle-sm m-1">{{ InProgress }} </button>
+					<button class="btn inprogress btn-circle btn-circle-sm m-1">{{ Pending }} </button>
+					<button class="btn add btn-circle btn-circle-sm m-1" (click)="openDialog()"><i
+							class="fa fa-plus"></i></button>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<!-- <app-grid></app-grid> -->
+		<div class="row">
+			<div class="col-sm-10">
+				<div class="btn-group" style="margin-top: -13px;">
+					<button type="button" class="btn btn-link" (click)="openDialogconfirm(0)"><i class="fa fa-trash-o"
+							aria-hidden="true"></i></button>
+					<!-- <button type="button" class="btn btn-link"><i class="fa fa-share-square-o"
+						aria-hidden="true"></i></button> -->
+
+					<div class="dropdown">
+						<button type="button " class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-share-square-o" aria-hidden="true"></i>
+						</button>
+						<div class="dropdown-menu">
+							<!-- <a class="dropdown-item" (click)="exporttask('pdf')" > PDF</a> -->
+							<a class="dropdown-item" (click)="exporttask('csv')"> CSV</a>
+
+						</div>
+					</div>
+
+					<!-- <div class="dropdown">
+						<button type="button " class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-user-o" aria-hidden="true"></i>
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" (click)="assigntaskbulk()" href="#">Pratish</a>
+							<a class="dropdown-item" href="#">Ram</a>
+						</div>
+					</div> -->
+
+					<!-- <div class="dropdown ">
+						<button type="button " class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-plane" aria-hidden="true"></i>
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">Link 1</a>
+							<a class="dropdown-item" href="#">Link 2</a>
+							<a class="dropdown-item" href="#">Link 3</a>
+						</div>
+					</div> -->
+
+					<!-- <button type="button" class="btn btn-link"><i class="fa fa-user-o" aria-hidden="true"></i></button> -->
+					<!-- <button type="button" class="btn btn-link"><i class="fa fa-plane" aria-hidden="true"></i></button> -->
+				</div>
+			</div>
+			<div class="col-sm-2" style="
+			margin-top: -8px;
+		">
+				<div class="input-group">
+					<!-- <input class="form-control" type="text" placeholder="Type to filter" (keyup)="updateFilter1($event)" /> -->
+
+					<!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+								placeholder="search" (keyup)="applyFilter($event.target.value)"> -->
+
+					<!-- <input #search id="search" type="text" class="form-control" placeholder="Search" aria-label="Search"
+						aria-describedby="basic-addon1" /> -->
+					<input #search id="search" type="text" class="form-control" placeholder="Search" aria-label="Search"
+						aria-describedby="basic-addon1" />
+
+					<!-- <input type="text" class="form-control" placeholder="Search" aria-label="Search" (keyup)='updateFilter($event)'> -->
+
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+						</button>
+
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+									value="all" checked>All</a>
+								<a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+									value="id">Id</a>
+									<a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+									value="queuename">Queue name</a>
+										<a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+									value="description"> Description</a>
+											<!-- <div role="separator" class="dropdown-divider"></div> -->
+											<a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+									value="status">
+								Status</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<!-- <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+			
+			<ng-container matColumnDef="select">
+				<th mat-header-cell *matHeaderCellDef>
+					<mat-checkbox (change)="$event ? masterToggle() : null"
+						[checked]="selection.hasValue() && isAllSelected()"
+						[indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+					</mat-checkbox>
+				</th>
+				<td mat-cell *matCellDef="let row">
+					<mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+						[checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+					</mat-checkbox>
+				</td>
+			</ng-container>
+
+		
+			<ng-container matColumnDef="position">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+				<td mat-cell *matCellDef="let element"> {{element.position}} </td>
+			</ng-container>
+
+		
+			<ng-container matColumnDef="name">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Task Name </th>
+				<td mat-cell *matCellDef="let element" (click)="sidenav.toggle()"> {{element.name}} </td>
+			</ng-container>
+
+			
+			<ng-container matColumnDef="weight">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
+				<td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+			</ng-container>
+
+			
+			<ng-container matColumnDef="symbol">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Queue Id </th>
+				<td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+			</ng-container>
+
+			
+			<ng-container matColumnDef="errorcode">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Error Code </th>
+				<td mat-cell *matCellDef="let element"> {{element.errorcode}} </td>
+			</ng-container>
+
+			
+			<ng-container matColumnDef="assigned">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Assigned</th>
+				<td mat-cell *matCellDef="let element"> {{element.assigned}} </td>
+			</ng-container>
+
+			
+			<ng-container matColumnDef="Due">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Due Date</th>
+				<td mat-cell *matCellDef="let element"> {{element.Due}} </td>
+			</ng-container>
+
+			
+			<ng-container matColumnDef="status">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+				<td mat-cell *matCellDef="let element">
+
+					<button class="btn btn-success" (click)="ondelete(row.productID)" type="button">
+						Done
+					</button>
+
+				</td>
+			</ng-container>
+
+			
+			<ng-container matColumnDef="Actions">
+				<th mat-header-cell *matHeaderCellDef> Actions </th>
+				<td mat-cell *matCellDef="let row">
+					<div class="button-toobar">
+						<button class="btn btn-link btn-sm" (click)="onclick(row.productID)" type="button">
+							<i class="fa fa-edit"></i>
+						</button>
+						<button class="btn btn-link btn-sm" (click)="onCloneclick(row.productID)" type="button">
+							<i class="fa fa-plane"></i>
+						</button>
+						<button class="btn btn-link btn-sm" (click)="ondelete(row.productID)" type="button">
+							<i class="fa fa-trash alt"></i>
+						</button>
+						<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+							<mat-icon>more_vert</mat-icon>
+						</button>
+						<mat-menu #menu="matMenu">
+							<button mat-menu-item>
+								<mat-icon>Self Assign</mat-icon>
+								<span>Redial</span>
+							</button>
+							<button mat-menu-item disabled>
+								<mat-icon>voicemail</mat-icon>
+								<span>Check voice mail</span>
+							</button>
+							<button mat-menu-item>
+								<mat-icon>notifications_off</mat-icon>
+								<span>Disable alerts</span>
+							</button>
+						</mat-menu>
+					</div>
+				</td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+			</tr>
+		</table>
+ 
+		<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+
+		<div>
+			<ngx-datatable           class="material"           [rows]="rows"           [columns]="columns"
+				[sortType]="SortType.multi"           [columnMode]="'force'"           [headerHeight]="50"
+				          [footerHeight]="50"           [rowHeight]="'auto'"           [limit]="7"
+				          [selected]="selected"           [selectionType]="'checkbox'"
+				          [selectAllRowsOnPage]="false"           (select)='onSelect($event)'>
+			</ngx-datatable>
+		</div>
+		<ng-template #buttonsTemplate let-row="row" let-value="value">
+			<div class="button-toobar">
+				<!-- <button class="btn btn-link btn-sm" (click)="openDialog1(row)" type="button">
+					<i class="fa fa-edit"></i>
+				</button> -->
+				<button class="btn btn-link btn-sm" (click)="opensidenav(sidenav,row)" type="button">
+					<i class="fa fa-arrow-right hash"></i>
+				</button>
+				<!-- <div class="dropdown">
+						<button type="button " class="btn btn-link dropdown-toggle"  data-toggle="dropdown">
+							<i class="fa fa-user-o" aria-hidden="true"></i>
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item"  (click)="assigntask(row.id)" href="#">Pratish</a>
+							<a class="dropdown-item" href="#">Ram</a>
+						</div>
+					</div> -->
+				<!-- <button mat-icon-button [matMenuTriggerFor]="menu1" aria-label="Example icon-button with a menu">
+					<i class="fa fa-user-o" aria-hidden="true"></i>
+				</button>
+				<mat-menu #menu1="matMenu">
+					<button mat-menu-item (click)="assigntask(row.id)">
+						<mat-icon>user</mat-icon>
+						<span>pratish</span>
+					</button>
+				</mat-menu> -->
+
+				<button class="btn btn-link btn-sm hash" (click)="openDialogconfirm(row.id)" type="button">
+					<i class="fa fa-trash alt"></i>
+				</button>
+
+
+				<!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+					<mat-icon>more_vert</mat-icon>
+				</button>
+				<mat-menu #menu="matMenu">
+					<button mat-menu-item>
+						<mat-icon>Self Assign</mat-icon>
+						<span>Redial</span>
+					</button>
+					<button mat-menu-item disabled>
+						<mat-icon>voicemail</mat-icon>
+						<span>Check voice mail</span>
+					</button>
+					<button mat-menu-item>
+						<mat-icon>notifications_off</mat-icon>
+						<span>Disable alerts</span>
+					</button>
+				</mat-menu> -->
+			</div>
+		</ng-template>
+	</mat-tab>
+
+	<mat-tab label="Calender">
+		<div class="row text-center">
+			<div class="col-md-4">
+				<div class="btn-group">
+					<div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+						(viewDateChange)="closeOpenMonthViewDay()">
+						Previous
+					</div>
+					<div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+						Today
+					</div>
+					<div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+						(viewDateChange)="closeOpenMonthViewDay()">
+						Next
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+			</div>
+			<div class="col-md-4">
+				<div class="btn-group">
+					<div class="btn btn-primary" (click)="setView(CalendarView.Month)"
+						[class.active]="view === CalendarView.Month">
+						Month
+					</div>
+					<div class="btn btn-primary" (click)="setView(CalendarView.Week)"
+						[class.active]="view === CalendarView.Week">
+						Week
+					</div>
+					<div class="btn btn-primary" (click)="setView(CalendarView.Day)"
+						[class.active]="view === CalendarView.Day">
+						Day
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div [ngSwitch]="view">
+			<mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+				[refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+				(eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+			</mwl-calendar-month-view>
+			<mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
+				[refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+				(eventTimesChanged)="eventTimesChanged($event)">
+			</mwl-calendar-week-view>
+			<mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
+				[refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+				(eventTimesChanged)="eventTimesChanged($event)">
+			</mwl-calendar-day-view>
+		</div>
+
+		<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+		<!-- 
+		<br /><br /><br />
+
+		<h3>
+			Edit events
+			<button class="btn btn-primary pull-right" (click)="addEvent()">
+				Add new
+			</button>
+			<div class="clearfix"></div>
+		</h3>
+
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Primary color</th>
+						<th>Secondary color</th>
+						<th>Starts at</th>
+						<th>Ends at</th>
+						<th>Remove</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr *ngFor="let event of events">
+						<td>
+							<input type="text" class="form-control" [(ngModel)]="event.title"
+								(keyup)="refresh.next()" />
+						</td>
+						<td>
+							<input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()" />
+						</td>
+						<td>
+							<input type="color" [(ngModel)]="event.color.secondary" (change)="refresh.next()" />
+						</td>
+						<td>
+							<input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
+								(ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true"
+								[enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
+								placeholder="Not set" />
+						</td>
+						<td>
+							<input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end"
+								(ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true"
+								[enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
+								placeholder="Not set" />
+
+						</td>
+						<td>
+							<button class="btn btn-danger" (click)="deleteEvent(event)">
+								Delete
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div> -->
+
+		<ng-template #modalContent let-close="close">
+			<div class="modal-header">
+				<h5 class="modal-title">Event action occurred</h5>
+				<button type="button" class="close" (click)="close()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div>
+					Action:
+					<pre>{{ modalData?.action }}</pre>
+				</div>
+				<div>
+					Event:
+					<pre>{{ modalData?.event | json }}</pre>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-secondary" (click)="close()">
+					OK
+				</button>
+			</div>
+		</ng-template>
+
+
+	</mat-tab>
+	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+	</ngx-loading>
+</mat-tab-group>

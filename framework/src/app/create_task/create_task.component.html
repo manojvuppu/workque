@@ -1,0 +1,266 @@
+<h1 mat-dialog-title *ngIf="!data.id">Create Task</h1>
+<h1 mat-dialog-title *ngIf="data.id">Edit Task</h1>
+<div mat-dialog-content>
+	<form role="form" name="form" #f="ngForm">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label required">Task Name</label>
+					<input type="text" id="name"  #title="ngModel" name="name" required class="form-control"
+						[(ngModel)]="data.name" [disabled]="data.id" placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!title.valid && title.touched"> Please Enter value</span>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label required">Queue Name</label>
+
+					<select id="queueId" name="queueId" (ngModelChange)="getuserlist($event)" #ca="ngModel"
+						[(ngModel)]="data.queueId" required [disabled]="data.id" class="form-control">
+						<option value="{{item.id}}" *ngFor="let item of queue; let i = index"> {{item.queueName}}
+						</option>
+					</select>
+
+					<!-- <input  type="text" id="AddonName" #i="ngModel" disabled name="id" required class="form-control" [(ngModel)]="data.id"
+                        placeholder="Enter Value" /> -->
+					<span class="help-block" *ngIf="!ca.valid && ca.touched"> Please Enter value</span>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label ">Description</label>
+					<input type="text" id="description" #d="ngModel" name="description"  class="form-control"
+						[(ngModel)]="data.description"  placeholder="Enter Value" />
+					<!-- <span class="help-block" *ngIf="!d.valid && d.touched"> Please Enter value</span> -->
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<div class="form-group">
+					<!-- <button mat-raised-button [matMenuTriggerFor]="menu1">
+						<div class="" style="display: inline-block;">
+							<mat-icon style="margin-right: 5px; margin-top: 11px;"> assignment_returned </mat-icon>
+						</div>
+						<div class="" style="display: inline-block;">
+							<span style="font-size: 10px;display: block;color: blue;">Task Type</span>
+							<span style="font-size: 10px;margin-top: -21px;display: block;">{{data.queueId }}1</span>
+						</div>
+					</button>
+					<mat-menu #menu1="matMenu" >
+						
+						<button mat-menu-item *ngFor="let event of tasktypes" >{{ event.taskType }}</button>
+						
+					</mat-menu> -->
+					<!-- <div class="btn-group">
+						<button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							Task Type
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" *ngFor="let event of tasktypes" href="#">{{ event.taskType }}</a>
+						</div>
+					</div> -->
+					<div class="form-group">
+						<label class="control-label required" for="tasktype">Task Type</label>
+						<select   class="form-control" (ngModelChange)="getextension($event)" id="taskType"
+							name="taskType" [(ngModel)]="data.taskType" #tas="ngModel" [disabled]="data.id">
+							<option *ngFor="let event of tasktypes" value="{{ event.id }}"> {{ event.taskType }}
+							</option>
+						</select>
+
+						<!-- <input *ngIf="data.id" type="text" id="tasktype"  name="tasktype"  class="form-control"
+						[(ngModel)]="data.taskType" [disabled]="data.id" placeholder="Enter Value" /> -->
+
+						<!-- <span class="help-block" *ngIf="!tas.valid && tas.touched"> Please Enter value</span> -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for="exampleFormControlSelect1">Due Date</label>
+					<input type="date" min="{{now | date:'yyyy-MM-dd'}}" name="dueAt" [(ngModel)]="data.dueAt">
+				</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="priority">priority</label>
+						<select class="form-control" id="priority" name="priority" [(ngModel)]="data.priority">
+						<option *ngFor="let event of priority" value="{{event.description}}"> {{event.description}}
+						</option>
+					</select>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="Assign">Assign User</label>
+						<select class="form-control" id="exampleFormControlSelect1" name="assignedToUserId"
+						[(ngModel)]="data.assignedToUserId">
+						<option *ngFor="let event of users" value="{{event.email}}"> {{event.userName}}
+						</option>
+					</select>
+					</div>
+				</div>
+			</div>
+			<!-- <h6>Services</h6>
+		<div class="row">
+			<div class="col-md-3">
+				<ng-multiselect-dropdown name="selectedItems" [placeholder]="'Appointments'" [data]="dropdownList"
+					[(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+					(onSelectAll)="onSelectAll($event)">
+				</ng-multiselect-dropdown>
+			</div>
+			<div class="col-md-3">
+				<ng-multiselect-dropdown name="selectedItems" [placeholder]="'Orders details'" [data]="dropdownList"
+					[(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+					(onSelectAll)="onSelectAll($event)">
+				</ng-multiselect-dropdown>
+			</div>
+		</div> -->
+
+			<!-- <div class="row">
+			<div class="col-md-12">
+				<div id="accordion">
+					<div class="card">
+						<div class="card-header" id="heading-2">
+							<h5 class="mb-0">
+								<a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2"
+									aria-expanded="false" aria-controls="collapse-2">
+									Task Details
+								</a>
+							</h5>
+						</div>
+						<div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="control-label required">Category</label>
+											<input  type="text" id="AddonName" #rp="ngModel" name="ratePlan" required class="form-control" [(ngModel)]="data.ratePlan"
+                        placeholder="Enter Value" />
+											<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="heading-3">
+							<h5 class="mb-0">
+								<a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3"
+									aria-expanded="false" aria-controls="collapse-3">
+									Task Extension
+								</a>
+							</h5>
+						</div>
+						<div id="collapse-3" class="collapse" data-parent="#accordion" aria-labelledby="heading-3">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="control-label required">Category</label>
+											<input  type="text" id="AddonName" #rp="ngModel" name="ratePlan" required class="form-control" [(ngModel)]="data.ratePlan"
+                        placeholder="Enter Value" />
+											<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+			<!-- <h6>Extra </h6> -->
+			<mat-accordion>
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							Task Details
+						</mat-panel-title>
+
+					</mat-expansion-panel-header>
+
+					<div class="row">
+						<div class="col-md-6" *ngFor="let item of detaillist; let i = index">
+							<div class="form-group">
+								<label class="control-label ">{{item.tags}}</label>
+								<input type="text" class="form-control" [(ngModel)]="item.value"
+								[ngModelOptions]="{standalone: true}" name="detaillist{{i}}"
+								placeholder="Enter Value" />
+						</div>
+							</div>
+						</div>
+
+				</mat-expansion-panel>
+				<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							Task Extension
+						</mat-panel-title>
+					</mat-expansion-panel-header>
+					<div class="row">
+						<div class="col-md-6" *ngFor="let item of data.taskExtensionValues; let i = index">
+							<div class="form-group">
+								<label class="control-label ">{{item.attributeName}}</label>
+								<input type="text" name="taskExtensionValues{{i}}" class="form-control" placeholder="Enter Value"
+								[(ngModel)]="item.attributeValue" [ngModelOptions]="{standalone: true}" />
+						</div>
+							</div>
+						</div>
+				</mat-expansion-panel>
+			</mat-accordion>
+			<br>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label ">Comment</label>
+						<input type="text" id="AddonName" #rp="ngModel" name="title"  class="form-control"
+						[(ngModel)]="data.title" placeholder="Enter Value" />
+						<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+					</div>
+				</div>
+				<!-- <div style="margin-top: 40px ;" class="col-md-4">
+				<div class="form-group">
+					<mat-chip-list aria-label="Fish selection">
+						<mat-chip></mat-chip>
+					</mat-chip-list>
+				</div>
+			</div> -->
+				<div style="margin-top: 40px;" class="col-md-6">
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+
+								<!-- <label class="btn btn-primary" for="upload-photo">Attach</label>
+								<input type="file" name="photo" id="upload-photo" multiple
+								(change)="onFileChanged($event)" /> -->
+
+								<input type="file" (change)="onFileChanged($event)" name="filefield" multiple="multiple">
+
+							</div>
+							<div class="col-md-10">
+								
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+	</form>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Cancel</button>
+	<button mat-button [disabled]="!f.valid"  (click)="save(detaillist, data.taskExtensionValues)" [mat-dialog-close]="data"
+		cdkFocusInitial style=" background: black; color: #fff; ">Save</button>
+</div>

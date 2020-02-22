@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>Create User Access</h1>
+<hr>
+<div mat-dialog-content>
+	<form role="form" name="form" #f="ngForm">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="control-label required">Group Name</label>
+					<input type="text" id="AddonName" #rp="ngModel" name="queueName" required class="form-control"
+						[(ngModel)]="data.queueName" placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+				</div>
+            </div>
+            <div class="col-md-6">
+                    <div class="form-group">
+                            <label class="control-label required">Group Leader</label>
+                            <input type="text" id="AddonName" #rp="ngModel" name="queueName" required class="form-control"
+                                [(ngModel)]="data.queueName" placeholder="Enter Value" />
+                            <span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+                        </div>
+                </div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label required">Group Member</label>
+					<input type="text" id="AddonName" #qd="ngModel" name="queueDescription" required
+						class="form-control" [(ngModel)]="data.queueDescription" placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!qd.valid && qd.touched"> Please Enter value</span>
+				</div>
+            </div>
+       
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label required">Description</label>
+					<input type="text" id="AddonName" #qs="ngModel" name="queueSLANoOfUnits" required
+						class="form-control" [(ngModel)]="data.queueSLANoOfUnits" placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!qs.valid && qs.touched"> Please Enter value</span>
+				</div>
+			</div>
+        </div>
+
+		<!-- <button type="submit" class="btn btn-default ">Save</button> -->
+	</form>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Cancel</button>
+	<button mat-button (click)="save()" [mat-dialog-close]="data" cdkFocusInitial style=" background: black; color: #fff; ">Save</button>
+</div>

@@ -1,0 +1,68 @@
+<h1 mat-dialog-title *ngIf="!data.id">Create Queue</h1>
+<h1 mat-dialog-title *ngIf="data.id">Edit Queue</h1>
+<hr>
+<div mat-dialog-content>
+	<form role="form" name="form" #f="ngForm">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label required">Queue Name</label>
+					<input type="text" id="AddonName" #rp="ngModel" name="queueName" required class="form-control"
+						[(ngModel)]="data.queueName" placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!rp.valid && rp.touched"> Please Enter value</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label required">Description</label>
+					<input type="text" id="AddonName" #qd="ngModel" name="queueDescription" required
+						class="form-control" [(ngModel)]="data.queueDescription" placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!qd.valid && qd.touched"> Please Enter value</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label required">SLA</label>
+					<input type="number" id="AddonName" #qs="ngModel" name="queueSLANoOfUnits" required
+						class="form-control" [(ngModel)]="data.queueSLANoOfUnits" placeholder="Enter Value" />
+					<span class="help-block" *ngIf="!qs.valid && qs.touched"> Please Enter Number</span>
+				</div>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<mat-radio-group aria-label="Select an option" name="queueSLAUnit" [(ngModel)]="data.queueSLAUnit">
+						<mat-radio-button value="1">Days</mat-radio-button>
+						<mat-radio-button value="2">Hours</mat-radio-button>
+						<mat-radio-button value="3">Minutes</mat-radio-button>
+					</mat-radio-group>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label for="sel1">User Group:</label>
+					<select multiple class="form-control" id="sel1" name="userGroup" [(ngModel)]="data.userGroup">
+							<option  *ngFor="let item of userlist; let i = index" value="{{item.id}}"> {{item.name}}
+						
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<!-- <button type="submit" class="btn btn-default ">Save</button> -->
+	</form>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick(0)">Cancel</button>
+	<button mat-button (click)="save()" *ngIf="data.id" [mat-dialog-close]="data" cdkFocusInitial style=" background: black; color: #fff; ">Update</button>
+	<button mat-button (click)="save()" *ngIf="!data.id" cdkFocusInitial style=" background: black; color: #fff; ">Create</button>
+</div>

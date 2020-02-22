@@ -1,0 +1,367 @@
+<h5> User Management </h5>
+
+<div class="row">
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-pills-icons flex-column" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" href="#users" role="tab" data-toggle="tab">
+                    Users
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#Groups" role="tab" data-toggle="tab">
+                    Groups
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#Roles" role="tab" data-toggle="tab">
+                    Roles
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#Profiles" role="tab" data-toggle="tab">
+                    Profiles
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#Access" role="tab" data-toggle="tab">
+                    Access
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <div class="tab-content">
+            <div class="tab-pane active" id="users">
+                <h5>Create users</h5>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <button type="button" class="btn btn-link" (click)="openDialogconfirm(0)"><i class="fa fa-trash-o"
+                                aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                           
+                            <input #search id="search" type="text" class="form-control" placeholder="Search"
+                                aria-label="Search" aria-describedby="basic-addon1" />
+
+                            <!-- <div class="input-group-btn">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                </button>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="all" checked>All</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="id">Id</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="queuename">Queue name</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="description"> Description</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="status">
+                                        Status</a>
+                                </div>
+                            </div> -->
+
+                            <button class="btn add btn-circle btn-circle-sm m-1" (click)="openDialog1()"><i
+                                    class="fa fa-plus"></i></button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <ngx-datatable #table          class="material"           [rows]="rows" [sortType]="SortType.multi"
+                              [columns]="columns"            [columnMode]="'force'"           [headerHeight]="50"
+                              [footerHeight]="50"           [rowHeight]="'auto'"           [limit]="7"
+                              [selected]="selected"           [selectionType]="'checkbox'"
+                              [selectAllRowsOnPage]="false" [displayCheck]="displayCheck"
+                              (select)='onSelect($event)'>
+                </ngx-datatable>
+
+                <ng-template #buttonsTemplate let-row="row" let-value="value">
+                    <!-- <button class="btn btn-primary" (click)='onSelect(row)'>Button
+                                        </button> -->
+                    <button class="btn btn-default  btn-sm" (click)='openDialog(row)'>
+                        <span class="fa fa-edit"></span>
+                    </button>
+                    <button class="btn btn-default btn-sm" (click)="openDialogconfirm(row.userId)">
+                        <span class="fa fa-trash"></span>
+                    </button>
+
+                </ng-template>
+
+
+            </div>
+            
+            <div class="tab-pane" id="Groups">
+                <h5>Create and assign user groups</h5>
+
+                <div class="row">
+                    <div class="col-sm-10">
+                        <button type="button" class="btn btn-link" (click)="Deletebulk()"><i class="fa fa-trash-o"
+                                aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <!-- <input class="form-control" type="text" placeholder="Type to filter" (keyup)="updateFilter1($event)" /> -->
+
+                            <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                                            placeholder="search" (keyup)="applyFilter($event.target.value)"> -->
+
+                            <!-- <input #search id="search" type="text" class="form-control" placeholder="Search"
+                                aria-label="Search" aria-describedby="basic-addon1" />
+
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                </button>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="all" checked>All</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="id">Id</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="queuename">Queue name</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="description"> Description</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="status">
+                                        Status</a>
+                                </div>
+                            </div> -->
+
+                            <button class="btn add btn-circle btn-circle-sm m-1 float-right" (click)="openDialog3()"><i
+                                    class="fa fa-plus"></i></button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <ngx-datatable #table1           class="material"           [rows]="rows1" [sortType]="SortType.multi"
+                              [columns]="columns1"            [columnMode]="'force'"           [headerHeight]="50"
+                              [footerHeight]="50"           [rowHeight]="'auto'"           [limit]="7"
+                              [selected]="selected1"           [selectionType]="'checkbox'"
+                              [selectAllRowsOnPage]="false" [displayCheck]="displayCheck"
+                              (select)='onSelect($event)'>
+                </ngx-datatable>
+
+                <ng-template #buttonsTemplate let-row="row" let-value="value">
+                    
+                    <button class="btn btn-default  btn-sm" (click)='openDialog2(row)'>
+                        <span class="fa fa-edit"></span>
+                    </button>
+                    <button class="btn btn-default btn-sm" (click)='removeFile(row.id)'>
+                        <span class="fa fa-trash"></span>
+                    </button>
+
+                </ng-template>
+
+            </div>
+
+            <div class="tab-pane" id="Roles">
+                <h5>Create and assign roles</h5>
+
+                <div class="row">
+                    <div class="col-sm-10">
+                        <button type="button" class="btn btn-link" (click)="Deletebulk()"><i class="fa fa-trash-o"
+                                aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <!-- <input class="form-control" type="text" placeholder="Type to filter" (keyup)="updateFilter1($event)" /> -->
+
+                            <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                                                placeholder="search" (keyup)="applyFilter($event.target.value)"> -->
+
+                            <!-- <input #search id="search" type="text" class="form-control" placeholder="Search"
+                                aria-label="Search" aria-describedby="basic-addon1" />
+
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                </button>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="all" checked>All</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="id">Id</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="queuename">Queue name</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="description"> Description</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="status">
+                                        Status</a>
+                                </div>
+                            </div> -->
+
+                            <button class="btn add btn-circle btn-circle-sm m-1" (click)="openDialog5()"><i
+                                    class="fa fa-plus"></i></button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <ngx-datatable #table2           class="material"           [rows]="rows2" [sortType]="SortType.multi"
+                              [columns]="columns2"            [columnMode]="'force'"           [headerHeight]="50"
+                              [footerHeight]="50"           [rowHeight]="'auto'"           [limit]="7"
+                              [selected]="selected2"           [selectionType]="'checkbox'"
+                              [selectAllRowsOnPage]="false" [displayCheck]="displayCheck"
+                              (select)='onSelect($event)'>
+                </ngx-datatable>
+
+                <ng-template #buttonsTemplate let-row="row" let-value="value">
+                   
+                    <button class="btn btn-default  btn-sm" (click)='openDialog4(row)'>
+                        <span class="fa fa-edit"></span>
+                    </button>
+                    <button class="btn btn-default btn-sm" (click)='removeFile(row.id)'>
+                        <span class="fa fa-trash"></span>
+                    </button>
+
+                </ng-template>
+
+            </div>
+
+            <div class="tab-pane" id="Profiles">
+                <h5>Create and assign profile</h5>
+
+                <div class="row">
+                    <div class="col-sm-10">
+                        <button type="button" class="btn btn-link" (click)="Deletebulk()"><i class="fa fa-trash-o"
+                                aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                           
+
+                            <!-- <input #search id="search" type="text" class="form-control" placeholder="Search"
+                                aria-label="Search" aria-describedby="basic-addon1" />
+
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                </button>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="all" checked>All</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="id">Id</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="queuename">Queue name</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="description"> Description</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="status">
+                                        Status</a>
+                                </div>
+                            </div> -->
+
+                            <button class="btn add btn-circle btn-circle-sm m-1" (click)="openDialog7()"><i
+                                    class="fa fa-plus"></i></button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <ngx-datatable #table4           class="material"           [rows]="rows4" [sortType]="SortType.multi"
+                              [columns]="columns4"            [columnMode]="'force'"           [headerHeight]="50"
+                              [footerHeight]="50"           [rowHeight]="'auto'"           [limit]="7"
+                              [selected]="selected"           [selectionType]="'checkbox'"
+                              [selectAllRowsOnPage]="false" [displayCheck]="displayCheck"
+                              (select)='onSelect($event)'>
+                </ngx-datatable>
+
+                <ng-template #buttonsTemplate let-row="row" let-value="value">
+                   
+                    <button class="btn btn-default  btn-sm" (click)='openDialog6(row)'>
+                        <span class="fa fa-edit"></span>
+                    </button>
+                    <button class="btn btn-default btn-sm" (click)='removeFile(row.id)'>
+                        <span class="fa fa-trash"></span>
+                    </button>
+
+                </ng-template>
+
+            </div>
+
+            <div class="tab-pane" id="Access">
+                <h5>Create and assign access sets</h5>
+
+                <div class="row">
+                    <div class="col-sm-10">
+                        <button type="button" class="btn btn-link" (click)="Deletebulk()"><i class="fa fa-trash-o"
+                                aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <!-- <input class="form-control" type="text" placeholder="Type to filter" (keyup)="updateFilter1($event)" /> -->
+
+                            <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                                                        placeholder="search" (keyup)="applyFilter($event.target.value)"> -->
+
+                            <!-- <input #search id="search" type="text" class="form-control" placeholder="Search"
+                                aria-label="Search" aria-describedby="basic-addon1" />
+
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                </button>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="all" checked>All</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="id">Id</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="queuename">Queue name</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="description"> Description</a>
+                                    <a class="dropdown-item" href="#"> <input type="checkbox" class="form-check-input"
+                                            value="status">
+                                        Status</a>
+                                </div>
+                            </div> -->
+
+                            <button class="btn add btn-circle btn-circle-sm m-1" (click)="openDialog9()"><i
+                                    class="fa fa-plus"></i></button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <ngx-datatable #table3           class="material"           [rows]="rows3" [sortType]="SortType.multi"
+                              [columns]="columns3"            [columnMode]="'force'"           [headerHeight]="50"
+                              [footerHeight]="50"           [rowHeight]="'auto'"           [limit]="7"
+                              [selected]="selected"           [selectionType]="'checkbox'"
+                              [selectAllRowsOnPage]="false" [displayCheck]="displayCheck"
+                              (select)='onSelect($event)'>
+                </ngx-datatable>
+
+                <ng-template #buttonsTemplate let-row="row" let-value="value">
+                  
+                    <button class="btn btn-default  btn-sm" (click)='openDialog8(row)'>
+                        <span class="fa fa-edit"></span>
+                    </button>
+                    <button class="btn btn-default btn-sm" (click)='removeFile(row.id)'>
+                        <span class="fa fa-trash"></span>
+                    </button>
+
+                </ng-template>
+
+            </div>
+
+        </div>
+    </div>
+</div>

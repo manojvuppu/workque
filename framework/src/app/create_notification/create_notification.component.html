@@ -1,0 +1,98 @@
+<h1 mat-dialog-title *ngIf="!data.id"> Create Notification</h1>
+<h1 mat-dialog-title *ngIf="data.id"> Edit Notification</h1>
+
+<hr>
+<div mat-dialog-content>
+	<mat-horizontal-stepper labelPosition="bottom" #stepper>
+		<mat-step [stepControl]="firstFormGroup">
+
+			<ng-template matStepLabel>Select</ng-template>
+
+			<div class="row">
+				<div class="col-md-12" >
+					<div class="form-group">
+						<button type="button" *ngFor="let item of events; let i = index" class="btn btn-large btn-block btn-light">{{item.bodyFile}}</button>
+					</div>
+				</div>
+			</div>
+
+
+			<div>
+				<button class="btn btn-info float-right" mat-button matStepperNext>Next</button>
+			</div>
+
+		</mat-step>
+
+		<mat-step>
+			<ng-template matStepLabel>Add Action</ng-template>
+
+			<div class="row">
+				When
+				<div class="col-md-3">
+
+					<div class="form-group">
+						<!-- <label class="control-label required">Queue Name</label> -->
+						<select id="tasktype" name="tasktype" (ngModelChange)="gettaskid($event)"  #ca="ngModel"
+						[(ngModel)]="data.tasktype" required class="form-control">
+								<option value="{{item.id}}" *ngFor="let item of tasktypes; let i = index"> {{item.taskType}}
+								</option>
+						</select>
+
+						<span class="help-block" *ngIf="!ca.valid && ca.touched"> Please Enter value</span>
+
+					</div>
+
+				</div>
+				Status Changes
+				<div class="col-md-3">
+
+
+					<div class="form-group">
+						<!-- <label class="control-label required">Queue Name</label> -->
+
+						<select id="queueId" name="queueId" (ngModelChange)="getuserlist($event)" #ca="ngModel"
+						[(ngModel)]="data.queueId" required class="form-control">
+						<option value="{{item.id}}" *ngFor="let item of events; let i = index"> {{item.bodyFile}}
+						</option>
+					</select>
+
+						<span class="help-block" *ngIf="!ca.valid && ca.touched"> Please Enter value</span>
+
+					</div>
+				</div>
+				<div class="col-md-3">
+
+					<div class="form-group">
+						<!-- <label class="control-label required">Queue Name</label> -->
+
+					<select id="username" name="username" (ngModelChange)="getuserlist($event)" #ca="ngModel"
+						[(ngModel)]="data.username" required class="form-control">
+						<option value="{{item.userId}}" *ngFor="let item of userslist; let i = index"> {{item.userName}}
+						</option>
+					</select>
+
+						<span class="help-block" *ngIf="!ca.valid && ca.touched"> Please Enter value</span>
+
+
+					</div>
+
+				</div>
+			</div>
+
+			<div>
+				<button mat-button matStepperPrevious>Back</button>
+				<!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+
+				<!-- <button mat-button (click)="onNoClick()">Cancel</button> -->
+				<button mat-button (click)="save()" class="btn btn-info float-right" [mat-dialog-close]="data.animal" cdkFocusInitial style=" background: black; color: #fff; ">Save</button>
+			</div>
+
+
+
+		</mat-step>
+	</mat-horizontal-stepper>
+
+</div>
+<div mat-dialog-actions>
+
+</div>
