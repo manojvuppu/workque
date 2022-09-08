@@ -55,7 +55,7 @@
 		"zone.js": "0.8.26",
 		"export-to-csv": "^0.2.1",
 		"ngx-loading": "^8.0.0",
-		"jszip": "^3.2.2",
+		"jszip": "^3.7.0",
 		"file-saver": "^2.0.2",
 		"@auth0/angular-jwt": "^3.0.1",
 		"@swimlane/ngx-graph": "^6.2.0"
